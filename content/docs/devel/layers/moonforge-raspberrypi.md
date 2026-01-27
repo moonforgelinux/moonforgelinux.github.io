@@ -1,21 +1,18 @@
 ---
-Title: 'meta-moonforge-raspberrypi'
+title: 'meta-moonforge-raspberrypi'
+type: 'docs'
 ---
-
-# meta-moonforge-raspberrypi
-
 This layer adds support for the Raspberry Pi 5 and 4.
 
-#### What it does
+## What it does
 
-Extends the minimal base image with recipes, distro and local configurations to build images for the Raspberry Pi.
+* Extends the base image with recipes, distro and local configurations to build images for the Raspberry Pi.
 
-
-#### How to use it
+## How to use it
 
 To use this layer, include the following kas file:
 
-```yaml
+```yml
 header:
   version: 16
   includes:
@@ -28,13 +25,13 @@ local_conf_header:
 machine: raspberrypi5
 ```
 
-#### Testing
+## Testing
 
 The built image can be flashed with `bmaptool`:
 
-```
+```sh
 $ bmaptool copy \
-> build/tmp/deploy/images/raspberrypi5/moonforge-image-minimal-raspberrypi5-0.wic.bz2 \
+> build/tmp/deploy/images/raspberrypi5/moonforge-image-base-raspberrypi5-0.wic.bz2 \
 > /dev/sdX
 ```
 
