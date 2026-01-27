@@ -73,4 +73,18 @@ The key responsibilities of these layer kas fragments are:
 
 ### Best practices
 
-...
+The goal of the Moonforge project is to adopt and showcase the best
+practices for Linux-based operating systems:
+
+- Rely on established technologies for building an OS image, like the Yocto
+  Project, bitbake, and kas.
+- Take full advantage of the modern Linux kernel and user space stacks, in
+  order to target the next generation of devices and use cases.
+- Generate immutable OS images that can be easily verified, deployed and
+  updated by existing technologies, such as systemd, RAUC, and Mender
+- Use CI/CD pipelines to build and publish OS images, security reports,
+  Software Bill of Materials metadata, and update bundles.
+
+Special consideration is reserved to the ability to set up, manage, and
+deploy the build environment on multiple hosting systems: public cloud,
+private cloud, or local infrastructure.
