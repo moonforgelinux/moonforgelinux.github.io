@@ -1,9 +1,6 @@
-+++
-title = 'Repositories'
-date = 2025-11-20
-+++
-
-## Repositories
+---
+title: 'Repositories'
+---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim aeque doleamus animo, cum corpore dolemus, fieri tamen permagna accessio potest, si aliquod.
 
@@ -11,7 +8,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ```yaml
 header:
-  version: 13
+  version: 16
   includes:
     - kas/include/repo/poky.yml
 ```
@@ -20,7 +17,7 @@ header:
 
 ```yaml
 header:
-  version: 13
+  version: 16
 
 repos:
   poky:

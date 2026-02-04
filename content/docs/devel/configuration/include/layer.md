@@ -1,7 +1,7 @@
-+++
-title = 'Layers'
-date = 2025-11-20
-+++
+---
+title: 'Layers'
+type: 'docs'
+---
 
 ## Layers
 
@@ -11,7 +11,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ```yaml
 header:
-  version: 13
+  version: 16
   includes:
     - kas/include/layer/meta-moonforge-distro.yml
 ```
