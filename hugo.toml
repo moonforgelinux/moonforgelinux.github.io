@@ -51,11 +51,11 @@ showLightDarkModeMenu = true
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.
-[[params.links.user]]
-  name = "User discussions"
-  url = "https://github.com/moonforgelinux/discussions/category/general"
-  icon = "fa fa-envelope"
-  desc = "Discussion and help from fellow Moonforge users"
+#[[params.links.user]]
+#  name = "User discussions"
+#  url = "https://github.com/moonforgelinux/discussions/category/general"
+#  icon = "fa fa-envelope"
+#  desc = "Discussion and help from fellow Moonforge users"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
   name = "GitHub"
