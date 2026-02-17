@@ -1,7 +1,5 @@
 ---
 title: Tutorials
-linkTitle: Tutorials
-menu: {main: {weight: 20}}
 ---
 
 In this section you will find tutorials on how to use Moonforge to create
