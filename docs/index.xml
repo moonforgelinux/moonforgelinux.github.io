@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Documentation on Moonforge</title><link>https://www.moonforgelinux.com/docs/</link><description>Recent content in Documentation on Moonforge</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://www.moonforgelinux.com/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Design</title><link>https://www.moonforgelinux.com/docs/design/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.com/docs/design/</guid><description>&lt;p>&lt;strong>Note&lt;/strong>: This is a living document that describes the current design policy
+for Moonforge.&lt;/p>
+&lt;p>For a high level description of the design goals of Moonforge, see the
+&lt;a href="https://www.moonforgelinux.com/goals/">Goals&lt;/a> page.&lt;/p>
+&lt;h2 id="releases">Releases&lt;/h2>
+&lt;h3 id="channels">Channels&lt;/h3>
+&lt;p>Moonforge releases follow three channels:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>stable&lt;/strong>, the current stable release&lt;/li>
+&lt;li>&lt;strong>next&lt;/strong>, the next stable release&lt;/li>
+&lt;li>&lt;strong>main&lt;/strong>, the main development branch&lt;/li>
+&lt;/ul>
+&lt;p>Each channel uses a separate branch tracks the corresponding Yocto branch:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>stable&lt;/strong> tracks the current LTS release branch&lt;/li>
+&lt;li>&lt;strong>next&lt;/strong> tracks the next LTS release branch, once it&amp;rsquo;s available&lt;/li>
+&lt;li>&lt;strong>main&lt;/strong> tracks the current development branch&lt;/li>
+&lt;/ul>
+&lt;p>Each branch tracks one version of Yocto only.&lt;/p></description></item></channel></rss>
