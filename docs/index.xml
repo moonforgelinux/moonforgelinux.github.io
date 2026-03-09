@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Documentation on Moonforge</title><link>https://moonforgelinux.github.io/docs/</link><description>Recent content in Documentation on Moonforge</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://moonforgelinux.github.io/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Design</title><link>https://moonforgelinux.github.io/docs/design/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://moonforgelinux.github.io/docs/design/</guid><description>&lt;p>&lt;strong>Note&lt;/strong>: This is a living document that describes the current design policy
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Documentation on Moonforge</title><link>https://www.moonforgelinux.org/docs/</link><description>Recent content in Documentation on Moonforge</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://www.moonforgelinux.org/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Design</title><link>https://www.moonforgelinux.org/docs/design/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/design/</guid><description>&lt;p>&lt;strong>Note&lt;/strong>: This is a living document that describes the current design policy
 for Moonforge.&lt;/p>
 &lt;p>For a high level description of the design goals of Moonforge, see the
-&lt;a href="https://moonforgelinux.github.io/goals/">Goals&lt;/a> page.&lt;/p>
+&lt;a href="https://www.moonforgelinux.org/goals/">Goals&lt;/a> page.&lt;/p>
 &lt;h2 id="releases">Releases&lt;/h2>
 &lt;h3 id="channels">Channels&lt;/h3>
 &lt;p>Moonforge releases follow three channels:&lt;/p>
