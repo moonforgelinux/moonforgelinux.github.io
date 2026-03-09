@@ -76,6 +76,7 @@ jobs:
 
       - name: Install Node.js dependencies
         run: |
+          cd themes/docsy
           [[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true
 
       - name: Configure Git
