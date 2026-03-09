@@ -17,6 +17,11 @@ enableRobotsTXT = true
     path = "github.com/google/docsy/dependencies"
     disable = false
 
+[imaging]
+resampleFilter = "CatmullRom"
+quality = 75
+anchor = "smart"
+
 [taxonomies]
 tag = "tags"
 category = "categories"

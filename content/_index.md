@@ -12,7 +12,7 @@ outputs:
   }
 </style>
 
-{{< blocks/cover image_anchor="top" height="full" >}}
+{{< blocks/cover image_anchor="top" color="primary bg-gradient td-below-navbar" height="full" >}}
 
 ![Moonforge](img/logos/logo-horizontal-color-dark.svg)
 {.moonforge-logo}
