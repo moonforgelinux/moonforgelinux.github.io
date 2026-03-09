@@ -1,5 +1,6 @@
 ---
 title: 'Layers'
+description: 'A list of supported layers for Moonforge projects.'
 ---
 
 Moonforge provides various layers ready made for building your base OS

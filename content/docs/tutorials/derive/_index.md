@@ -1,5 +1,7 @@
 ---
 title: Create a Moonforge OS
+description: How to create your Moonforge-based OS.
+weight: 100
 ---
 
 This document explains how to reproduce this example repository, that is, how to build a custom Linux distribution based on Moonforge.

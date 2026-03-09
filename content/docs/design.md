@@ -1,5 +1,7 @@
 ---
 title: Design
+description: A brief explanation of the design of Moonforge.
+weight: 150
 ---
 
 **Note**: This is a living document that describes the current design policy

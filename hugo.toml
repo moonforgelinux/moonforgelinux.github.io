@@ -6,11 +6,18 @@ theme = 'docsy'
 enableGitInfo = false
 enableRobotsTXT = true
 
+[module]
+replacements = 'github.com/FortAwesome/Font-Awesome -> ., github.com/twbs/bootstrap -> .'
+  [module.imports]
+  paths = ["docsy"]
+
 [taxonomies]
 tag = "tags"
 category = "categories"
 
 [markup]
+  [markup.tableOfContents]
+    endLevel = 5
   [markup.goldmark]
     [markup.goldmark.parser.attribute]
       block = true
@@ -25,7 +32,7 @@ category = "categories"
 
 # Comment out if you don't want the "print entire section" link enabled.
 [outputs]
-section = ["HTML", "print", "RSS"]
+section = ["HTML", "RSS"]
 
 [params]
 archived_version = false
@@ -35,8 +42,9 @@ github_repo = "https://github.com/moonforgelinux/moonforge-web"
 github_branch = "main"
 
 [params.copyright]
-authors = "Igalia S.L. | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0) | "
+authors = "Igalia S.L. | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)"
 from_year = 2026
+to_year = "present"
 
 [permalinks]
 blog = "/:section/:year/:month/:day/:slug/"
@@ -50,25 +58,24 @@ sidebar_search_disable = false
 showLightDarkModeMenu = true
 
 [params.links]
-# End user relevant links. These will show up on left side of footer and in the community page if you have one.
-#[[params.links.user]]
-#  name = "User discussions"
-#  url = "https://github.com/moonforgelinux/discussions/category/general"
-#  icon = "fa fa-envelope"
-#  desc = "Discussion and help from fellow Moonforge users"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
-  name = "GitHub"
+  name = "Discussions"
+  url = "https://github.com/orgs/moonforgelinux/discussions"
+  icon = "fa-regular fa-message"
+  desc = "Discussions and help"
+[[params.links.developer]]
+  name = "Project repository"
   url = "https://github.com/moonforgelinux"
-  icon = "fab fa-github"
-  desc = "The Moonforge repository"
+  icon = "fa-brands fa-square-github"
+  desc = "The Moonforge project repository"
+[[params.links.developer]]
+  name = "Website repository"
+  url = "https://github.com/moonforgelinux/moonforge-web"
+  icon = "fa-brands fa-github"
+  desc = "The Moonforge website repository"
 #[[params.links.developer]]
 #  name = "Matrix"
 #  url = "https://chat.example.org/"
 #  icon = "fab fa-matrix"
 #  desc = "Chat with other project developers"
-[[params.links.developer]]
-  name = "Developer discussions"
-  url = "https://github.com/moonforgelinux/discussions/"
-  icon = "fa fa-envelope"
-  desc = "Discuss development issues around the project"

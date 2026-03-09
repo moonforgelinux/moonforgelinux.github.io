@@ -1,5 +1,7 @@
 ---
 title: Customize a Moonforge OS
+description: How to customize your Moonforge-based OS.
+weight: 100
 ---
 
 The Moonforge base image can be customized by adding other Yocto layers to the kas configuration file.

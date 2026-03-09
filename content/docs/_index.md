@@ -1,14 +1,8 @@
 ---
 title: Documentation
 linkTitle: Learn more
-menu: {main: {weight: 20}}
+menu: {main: {weight: 10}}
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim aeque doleamus animo, cum corpore dolemus, fieri tamen permagna accessio potest, si aliquod.
-
-Quoniam forensibus operis, laboribus, periculis non deseruisse mihi videor praesidium, in quo etiam Democritus haeret, turbulenta concursio hunc mundi ornatum efficere non poterit. Ne illud quidem adduci vix possum, ut ea, quae corrigere vult, mihi quidem videtur, inermis ac nudus est. Tollit definitiones, nihil de dividendo ac partiendo docet, non quo modo efficiatur concludaturque ratio tradit, non.
-
-- **Development**: the components, layers, and configuration necessary to
-  build a Moonforge system image
-- **Tutorials**: various examples of how to set up, configure, and build a
-  Moonforge system image
+Moonforge is an operating system for Linux devices that puts extensibility,
+flexibility, and ease of maintenance front and center.
