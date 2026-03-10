@@ -82,7 +82,7 @@ showLightDarkModeMenu = true
   desc = "The Moonforge project repository"
 [[params.links.developer]]
   name = "Website repository"
-  url = "https://github.com/moonforgelinux/moonforge.github.io"
+  url = "https://github.com/moonforgelinux/moonforgelinux.github.io"
   icon = "fa-brands fa-github"
   desc = "The Moonforge website repository"
 #[[params.links.developer]]
