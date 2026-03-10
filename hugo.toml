@@ -47,7 +47,7 @@ section = ["HTML", "RSS"]
 
 [params]
 archived_version = false
-url_latest_version = "https://www.moonforgelinux.com"
+url_latest_version = "https://www.moonforgelinux.org"
 github_project_repo = "https://github.com/moonforgelinux/"
 github_repo = "https://github.com/moonforgelinux/moonforgelinux.github.io"
 github_branch = "main"
