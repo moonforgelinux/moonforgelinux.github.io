@@ -53,7 +53,7 @@ github_repo = "https://github.com/moonforgelinux/moonforgelinux.github.io"
 github_branch = "main"
 
 [params.copyright]
-authors = "Igalia S.L. | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)"
+authors = "[Igalia S.L.](https://www.igalia.com/contact/) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0)"
 from_year = 2026
 to_year = "present"
 
