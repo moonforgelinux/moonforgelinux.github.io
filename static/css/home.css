@@ -233,7 +233,7 @@ h1, h2, h3, h4, h5, h6 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 1.25rem; 
+  gap: 1.25rem;
   max-width: 700px;
 }
 @media (max-width: 640px) { .clarify-grid { grid-template-columns: 1fr; grid-template-rows: 1fr; } }
@@ -314,17 +314,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* === LAYERS: white/black === */
-.layers-wrap {     
+.layers-wrap {
   background: var(--page-bg);
   border-bottom: 1px solid var(--border);
-} 
+}
 .layers-intro {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 4rem; align-items: start; margin-bottom: 3rem;
 }
 @media (max-width: 768px) { .layers-intro { grid-template-columns: 1fr; gap: 1.5rem; } }
 .layers-intro p { font-size: 1rem; color: var(--text-muted); line-height: 1.85; }
-  
+
 .layers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 0.75rem; }
 .layer-tag {
   display: flex; align-items: center; gap: 0.7rem;
@@ -340,12 +340,12 @@ h1, h2, h3, h4, h5, h6 {
 .layer-tag span { font-size: 0.9rem; color: var(--text-muted); }
 
 /* === How it works: indigo === */
-.how-wrap {        
+.how-wrap {
   background: var(--indigo);
   border-top: 1px solid rgba(255,255,255,0.1);
   position: relative;
   overflow: hidden;
-} 
+}
 .how-wrap .section-label { color: var(--sky); }
 .how-wrap .section-label::before { background: var(--sky); }
 .how-wrap h2 { color: #fff; }
@@ -370,7 +370,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* === Quotes: wisteria === */
 
-.quotes-wrap {     
+.quotes-wrap {
   background: var(--wisteria);
   border-top: 1px solid var(--wisteria-75);
 }
@@ -398,7 +398,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem; display: block;
 }
 .quote-text { font-size: 1rem; color: var(--text-color-bg); line-height: 1.85; margin-bottom: 1.5rem; }
-.quote-source { 
+.quote-source {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -471,7 +471,7 @@ footer {
   margin: 0 auto;
 }
 .footer-brand { font-size: 0.8rem; color: var(--ink-25); }
-.footer-brand img { 
+.footer-brand img {
   height: 22px; width: auto;
   margin-bottom: 0.2rem; display: block;
   filter: brightness(10); opacity: 0.7;
@@ -489,7 +489,7 @@ footer {
 }
 .footer-inner a:hover { color: var(--wisteria); }
 .footer-links a {
-  text-decoration: none; 
+  text-decoration: none;
   font-size: 0.95rem;
 }
 
