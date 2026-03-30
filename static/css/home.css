@@ -429,17 +429,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 .cta-inner {
   display: flex; flex-wrap: wrap;
-  justify-content: space-between; gap: 2.5rem;
+  justify-content: space-between; gap: 2rem;
 }
 .cta-wrap h2 {
-  font-size: clamp(2.5rem, 3vw, 3.5rem);
+  font-size: clamp(2.5rem, 4vw, 3rem);
   font-weight: 800; letter-spacing: -0.025em;
   color: var(--text);
   max-width: 22ch;
   line-height: 1.15;
-}
-.cta-wrap p {
-  color: var(--text-muted);
 }
 .cta-wrap h2 span {
   background: linear-gradient(135deg, var(--indigo), var(--wisteria));
@@ -450,6 +447,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
   gap: 1.5rem;
   align-content: flex-start;
+  align-self: center;
 }
 
 /* === Footer: ink === */
