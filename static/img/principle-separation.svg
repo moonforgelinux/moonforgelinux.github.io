@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 300 150"
+   width="300"
+   height="150"
+   version="1.1"
+   id="svg20"
+   sodipodi:docname="principle-separation.svg"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview20"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.8637825"
+     inkscape:cx="123.61274"
+     inkscape:cy="55.695571"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="1920"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg20" />
+  <rect
+     width="300"
+     height="150"
+     fill="#f7f5ff"
+     id="rect1"
+     x="0"
+     y="0"
+     style="stroke-width:0.825723" />
+  <rect
+     x="50"
+     y="10"
+     width="191.27711"
+     height="50"
+     rx="6.072289"
+     fill="#4c1d95"
+     id="rect2"
+     style="stroke-width:0.838338" />
+  <rect
+     x="60.626511"
+     y="18.626507"
+     width="45.542168"
+     height="9.1084337"
+     rx="2.2771084"
+     fill="#b799eb"
+     opacity="0.7"
+     id="rect3"
+     style="stroke-width:0.759036" />
+  <rect
+     x="112.24097"
+     y="18.626507"
+     width="36.433735"
+     height="9.1084337"
+     rx="2.2771084"
+     fill="#b799eb"
+     opacity="0.5"
+     id="rect4"
+     style="stroke-width:0.759036" />
+  <rect
+     x="154.74699"
+     y="18.626507"
+     width="42.506023"
+     height="9.1084337"
+     rx="2.2771084"
+     fill="#b799eb"
+     opacity="0.4"
+     id="rect5"
+     style="stroke-width:0.759036" />
+  <rect
+     x="60.626511"
+     y="34.771084"
+     width="27.325302"
+     height="6.072289"
+     rx="2.2771084"
+     fill="#b799eb"
+     opacity="0.3"
+     id="rect6"
+     style="stroke-width:0.759036" />
+  <rect
+     x="92.506027"
+     y="34.771084"
+     width="39.469879"
+     height="6.072289"
+     rx="2.2771084"
+     fill="#b799eb"
+     opacity="0.25"
+     id="rect7"
+     style="stroke-width:0.759036" />
+  <text
+     x="232.02409"
+     y="53.530121"
+     text-anchor="end"
+     font-size="6.83133px"
+     fill="#c9b2f0"
+     font-family="system-ui, sans-serif"
+     letter-spacing="0.08em"
+     font-weight="600"
+     id="text7"
+     style="font-weight:600;font-size:6.83133px;font-family:system-ui, sans-serif;letter-spacing:0.08em;text-anchor:end;fill:#c9b2f0;stroke-width:0.759036"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       id="tspan20">UPSTREAM</tspan></text>
+  <line
+     x1="25"
+     y1="75.433884"
+     x2="275"
+     y2="75.433884"
+     stroke="#b799eb"
+     stroke-width="0.867763"
+     stroke-dasharray="5, 4"
+     id="line7"
+     style="stroke-dasharray:1.73552597,0.86776298;stroke-dashoffset:0" />
+  <rect
+     x="50"
+     y="91.349396"
+     width="191.27711"
+     height="50"
+     rx="6.072289"
+     fill="#ede5fa"
+     id="rect9"
+     style="stroke-width:0.726022" />
+  <rect
+     x="60.626511"
+     y="99.975906"
+     width="36.433735"
+     height="7.5903616"
+     rx="2.2771084"
+     fill="#4c1d95"
+     opacity="0.35"
+     id="rect10"
+     style="stroke-width:0.759036" />
+  <rect
+     x="103.13253"
+     y="99.975906"
+     width="48.578312"
+     height="7.5903616"
+     rx="2.2771084"
+     fill="#4c1d95"
+     opacity="0.25"
+     id="rect11"
+     style="stroke-width:0.759036" />
+  <rect
+     x="60.626511"
+     y="112.12048"
+     width="21.253012"
+     height="6.072289"
+     rx="2.2771084"
+     fill="#22d3ee"
+     opacity="0.7"
+     id="rect12"
+     style="stroke-width:0.759036" />
+  <rect
+     x="86.433731"
+     y="112.12048"
+     width="33.397591"
+     height="6.072289"
+     rx="2.2771084"
+     fill="#22d3ee"
+     opacity="0.5"
+     id="rect13"
+     style="stroke-width:0.759036" />
+  <rect
+     x="124.38553"
+     y="112.12048"
+     width="27.325302"
+     height="6.072289"
+     rx="2.2771084"
+     fill="#22d3ee"
+     opacity="0.4"
+     id="rect14"
+     style="stroke-width:0.759036" />
+  <text
+     x="232.02409"
+     y="135.16867"
+     text-anchor="end"
+     font-size="6.83133px"
+     fill="#4c1d95"
+     font-family="system-ui, sans-serif"
+     letter-spacing="0.08em"
+     font-weight="600"
+     id="text18"
+     style="font-weight:600;font-size:6.83133px;font-family:system-ui, sans-serif;letter-spacing:0.08em;text-anchor:end;fill:#4c1d95;stroke-width:0.759036"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal"
+       id="tspan21">DOWNSTREAM</tspan></text>
+  <defs
+     id="defs18">
+    <marker
+       id="arr2"
+       viewBox="0 0 10 10"
+       refX="8"
+       refY="5"
+       markerWidth="5"
+       markerHeight="5"
+       orient="auto-start-reverse">
+      <path
+         d="M 2,1 8,5 2,9"
+         fill="none"
+         stroke="#6b3dab"
+         stroke-width="1.5"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path18" />
+    </marker>
+    <marker
+       id="arr2-3"
+       viewBox="0 0 10 10"
+       refX="8"
+       refY="5"
+       markerWidth="5"
+       markerHeight="5"
+       orient="auto-start-reverse">
+      <path
+         d="M 2,1 8,5 2,9"
+         fill="none"
+         stroke="#6b3dab"
+         stroke-width="1.5"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         id="path18-6" />
+    </marker>
+  </defs>
+  <line
+     x1="145.88498"
+     y1="61.835178"
+     x2="145.88498"
+     y2="87.430496"
+     stroke="#6b3dab"
+     stroke-width="1.83371"
+     marker-end="url(#arr2-3)"
+     id="line18-7"
+     style="marker-end:url(#arr2-3)" />
+</svg>

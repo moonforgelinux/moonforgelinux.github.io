@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 300 150"
+   width="300"
+   height="150"
+   version="1.1"
+   id="svg14"
+   sodipodi:docname="principle-balance.svg"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     id="namedview14"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.025"
+     inkscape:cx="101.7284"
+     inkscape:cy="125.18519"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="1920"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg14" />
+  <rect
+     width="300"
+     height="150"
+     fill="#ede5fa"
+     id="rect1"
+     x="0"
+     y="0"
+     style="stroke-width:0.825723" />
+  <polygon
+     points="150,170 135,195 165,195 "
+     fill="#4c1d95"
+     id="polygon1"
+     transform="translate(0,-69.047566)" />
+  <rect
+     x="120"
+     y="123.95244"
+     width="60"
+     height="8"
+     rx="3"
+     fill="#4c1d95"
+     id="rect2" />
+  <line
+     x1="70"
+     y1="93"
+     x2="55"
+     y2="58"
+     stroke="#b799eb"
+     stroke-width="1.5"
+     id="line3" />
+  <line
+     x1="70"
+     y1="93"
+     x2="85"
+     y2="58"
+     stroke="#b799eb"
+     stroke-width="1.5"
+     id="line4" />
+  <line
+     x1="230"
+     y1="93"
+     x2="215"
+     y2="58"
+     stroke="#b799eb"
+     stroke-width="1.5"
+     id="line5" />
+  <line
+     x1="230"
+     y1="93"
+     x2="245"
+     y2="58"
+     stroke="#b799eb"
+     stroke-width="1.5"
+     id="line6" />
+  <rect
+     x="42"
+     y="92.952438"
+     width="216"
+     height="7"
+     rx="3.5"
+     fill="#6b3dab"
+     id="rect3" />
+  <rect
+     x="42"
+     y="53"
+     width="57"
+     height="8"
+     rx="4"
+     fill="#4c1d95"
+     id="rect6" />
+  <rect
+     x="201"
+     y="53"
+     width="57"
+     height="8"
+     rx="4"
+     fill="#4c1d95"
+     id="rect7" />
+  <rect
+     x="46"
+     y="25"
+     width="16"
+     height="28"
+     rx="2"
+     fill="#b799eb"
+     id="rect8" />
+  <rect
+     x="78"
+     y="33"
+     width="16"
+     height="20"
+     rx="2"
+     fill="#b799eb"
+     id="rect9" />
+  <rect
+     x="63.5"
+     y="18"
+     width="13"
+     height="35"
+     rx="2"
+     fill="#6b3dab"
+     opacity="0.7"
+     id="rect10" />
+  <circle
+     cx="214"
+     cy="41"
+     r="12"
+     fill="#22d3ee"
+     opacity="0.85"
+     id="circle10" />
+  <rect
+     x="244"
+     y="31"
+     width="14"
+     height="22"
+     rx="7"
+     fill="#22d3ee"
+     opacity="0.6"
+     id="rect11" />
+  <circle
+     cx="235"
+     cy="45"
+     r="8"
+     fill="#5dddf2"
+     opacity="0.7"
+     id="circle11" />
+</svg>
