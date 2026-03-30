@@ -169,13 +169,14 @@ outputs:
     </div>
   </section>
 </div>
+<!-- CTA Section: Light Wisteria / Black Aurora -->
 <div class="cta-wrap">
   <section class="section">
     <div class="cta-inner">
       <h2>Start building your OS <span>today.</span></h2>
       <div class="cta-buttons">
-        <a class="button btn-indigo" href="https://moonforgelinux.org/docs/tutorials/" target="_blank">Read the Tutorials →</a>
-        <a class="button btn-outline-dark" href="https://github.com/moonforgelinux/meta-derivative/" target="_blank">derivative example →</a>
+        <a class="button btn-indigo" href="https://moonforgelinux.org/docs/tutorials/" target="_blank">Read the Tutorials <i class="fas fa-arrow-alt-circle-right ms-2"></i></a>
+        <a class="button btn-outline-dark" href="https://github.com/moonforgelinux/meta-derivative/" target="_blank">derivative example <i class="fa-regular fa-clipboard"></i></a>
       </div>
     </div>
   </section>
