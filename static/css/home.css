@@ -516,3 +516,7 @@ footer .container-fluid {
 .td-footer__right ul {
   padding-right: 0.5rem;
 }
+/* The NavBar looks really bad in Outfit */
+.td-navbar {
+  font-family: var(--bs-font-sans-serif);
+}
