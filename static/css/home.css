@@ -47,17 +47,25 @@
   --border-light:  rgba(76,29,149,0.15);
   --overlay:       rgba(76,29,149,0.08);
   --highlight:     var(--indigo-75);
+  --surface:       var(--wisteria-50);
+  --surface-bd:    var(--wisteria-75);
+  --surface-hv:    var(--wisteria-75);
+  --surface-hv-bd: var(--wisteria);
 }
 [data-bs-theme="dark"] {
   --page-bg:       var(--ink);
   --text:          #f0eeff;
-  --text-muted:    var(--wisteria);
+  --text-muted:    var(--wisteria-75);
   --text-dim:      var(--ink-50);
   --border:        rgba(34,211,238,0.15);
   --border-mid:    rgba(34,211,238,0.25);
   --border-light:  rgba(183,153,235,0.2);
-  --highlight:     var(--sky);
   --overlay:       rgba(34,211,238,0.08);
+  --highlight:     var(--sky);
+  --surface:       #0d1030;
+  --surface-bd:    rgba(76,29,149,0.45);
+  --surface-hv:    rgba(183,153,235,0.2);
+  --surface-hv-bd: var(--wisteria);
 }
 
 /* Hide light-mode things when in dark mode */
@@ -320,16 +328,16 @@ h1, h2, h3, h4, h5, h6 {
 .layers-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 0.75rem; }
 .layer-tag {
   display: flex; align-items: center; gap: 0.7rem;
-  background: var(--wisteria-50); border: 1.5px solid var(--wisteria-75);
+  background: var(--surface); border: 1.5px solid var(--surface-bd);
   border-radius: 7px; padding: 0.85rem 1.1rem;
   transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
 }
-.layer-tag:hover { background: var(--wisteria-75); border-color: var(--wisteria); box-shadow: var(--shadow-sm); }   
+.layer-tag:hover { background: var(--surface-hv); border-color: var(--surface-hv-bd); box-shadow: var(--shadow-sm); }
 .layer-dot {
   width: 7px; height: 7px; border-radius: 50%;
-  background: var(--indigo); flex-shrink: 0;
-} 
-.layer-tag span { font-family: var(--body); font-size: 0.9rem; color: var(--text-color-bg); }
+  background: var(--highlight); flex-shrink: 0;
+}
+.layer-tag span { font-size: 0.9rem; color: var(--text-muted); }
 
 /* === How it works: indigo === */
 .how-wrap {        
