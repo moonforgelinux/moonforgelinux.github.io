@@ -7,10 +7,16 @@ $moonforge_colors: (
 
 $secondary: map-get($moonforge_colors, "wisteria");
 $primary: map-get($moonforge_colors, "indigo-velvet");
+$active: lighten($secondary, 25%);
+$inactive: lighten($secondary, 10%);
+
 
 $td-navbar-bg-color: shade-color($primary, 22%); // Should match $primary-darker
-$navbar-light-active-color: $secondary;
-$navbar-dark-active-color: $secondary;
+$navbar-light-active-color: $active;
+$navbar-dark-active-color: $active;
+$navbar-light-color: $inactive;
+$navbar-dark-color: $inactive;
+
 
 // Link hover: use secondary as color base
 $link-hover-color: darken($secondary, 20%);
