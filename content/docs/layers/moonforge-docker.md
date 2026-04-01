@@ -1,44 +1,82 @@
 ---
 title: 'meta-moonforge-docker'
-type: 'docs'
+linkTitle: 'Docker'
+weight: 30
+description: >
+  Adds Docker engine and docker-compose to a Moonforge image, with container storage
+  configured on the persistent data partition.
 ---
 
-This layer adds and configures Docker to be able to run containers.
+`meta-moonforge-docker` installs and configures the Docker container runtime. Because
+the root filesystem is read-only, this layer redirects Docker's image and container
+storage to the persistent data partition so that pulled images and running containers
+survive reboots.
 
 ## What it does
 
-* Provides a custom recipe to configure Docker storage (e.g., to store images on the persistent partition).
-* Extends the base image with Docker recipes and its dependencies.
+- Installs the Docker engine and its dependencies into the base image.
+- Provides a custom recipe that configures Docker's data root
+  (`/var/lib/docker` → `/data/docker`) so that container images are stored on the
+  writable persistent partition rather than the read-only rootfs.
+- Includes `docker-compose` (the `docker compose` plugin) for multi-container
+  application definitions.
+
+## Why use it
+
+Docker is the most widely supported container runtime and the natural choice when your
+team already uses Docker images and Compose files for development and deployment. If you
+prefer a daemonless runtime, see [`meta-moonforge-podman`](../moonforge-podman/) instead.
+
+## Dependencies
+
+- [`meta-moonforge-distro`](../moonforge-distro/), required by all layers.
 
 ## How to use it
 
-To use this layer, include the following kas file:
-
-```yml
+```yaml
 header:
   version: 16
   includes:
-    - kas/include/layer/meta-moonforge-docker.yml
+    - repo: meta-moonforge
+      file: kas/include/layer/meta-moonforge-distro.yml
+    - repo: meta-moonforge
+      file: kas/include/layer/meta-moonforge-docker.yml
 ```
+
+No additional `local_conf_header` entries are required. The layer's kas fragment sets
+sensible defaults for container storage automatically.
 
 ## Testing
 
-Once in the device, test that `docker` is installed:
+After booting the image, you can verify that Docker is running:
 
-```sh
-$ docker run -it hello-world
+```
+$ systemctl status docker
+$ docker info
+```
+
+Pull and run a test container:
+
+```
+$ docker run --rm hello-world
 $ docker run -it ubuntu bash
 ```
 
-Additionally, `docker-compose` is also available:
+Verify that `docker compose` is available:
 
-```sh
-$ cat > docker-compose.yml << EOF
+```
+$ cat > /tmp/docker-compose.yml << EOF
 services:
   hello:
     image: hello-world
 EOF
-$ docker compose up
+$ docker compose -f /tmp/docker-compose.yml up
 ```
 
-See: [meta-moonforge-docker](https://github.com/moonforgelinux/meta-moonforge/blob/main/kas/include/layer/meta-moonforge-docker.yml)
+Confirm that pulled images are stored on the data partition:
+
+```
+$ ls /data/docker/image/
+```
+
+See: [meta-moonforge-docker on GitHub](https://github.com/moonforgelinux/meta-moonforge/blob/main/kas/include/layer/meta-moonforge-docker.yml)

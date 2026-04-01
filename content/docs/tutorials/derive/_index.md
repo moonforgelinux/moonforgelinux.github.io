@@ -1,10 +1,11 @@
 ---
-title: Create a Moonforge OS
-description: How to create your Moonforge-based OS.
+title: 'Create a derivative based on Moonforge'
+linkTitle: 'Create a derivative'
+description: How to create your own Moonforge-based OS image.
 weight: 100
 ---
 
-This document explains how to reproduce this example repository, that is, how to build a custom Linux distribution based on Moonforge.
+This document explains how to build a custom Linux distribution based on Moonforge, for a Raspberry Pi 5.
 
 ## Setup the build environment
 
@@ -32,9 +33,9 @@ $ mkdir meta-derivative # or, e.g., meta-name-of-company
 
 Note that the *cache* directory will hold both the downloads and shared-state cache directories, which will significantly speed up subsequent builds.
 
-## Describe the image
+## Configure the image
 
-Moonforge uses kas configuration files to determine what goes into an image, therefore, it's the recommended way to describe these images. Write a *kas* configuration file as follows:
+Moonforge uses kas configuration files to determine what goes into an image, these files are the recommended way to describe and configure any Moonforge based image.
 
 ```sh
 $ cd meta-derivative
@@ -57,12 +58,12 @@ header:
 
 local_conf_header:
   30_meta-moonforge-raspberrypi: |
-    # Specifies description file for partitioning the image
+    # Specifies the file describing the partitioning in the image
     WKS_FILE = "moonforge-image-base-raspberrypi.wks.in"
   20_meta-moonforge-distro: |
-    # Sets up persistent data partition
+    # Sets up a persistent data partition
     OVERLAYFS_ETC_DEVICE = "/dev/mmcblk0p3"
-    # Sets minimum size of the data partition
+    # Sets the minimum size of the data partition
     IMAGE_DATA_MIN_SIZE = "4096M"
 
 repos:
@@ -98,7 +99,7 @@ $ kas-container build kas/derivative-image-base-raspberrypi5.yml
 
 ## Test the image
 
-Once the image is successfully built, use a tool like [bmaptool](https://docs.yoctoproject.org/dev-manual/bmaptool.html) to flash the SD card:
+Once the image is successfully built, you can use a tool like [bmaptool](https://docs.yoctoproject.org/dev-manual/bmaptool.html) to flash the SD card:
 
 ```sh
 $ cd meta-derivative
