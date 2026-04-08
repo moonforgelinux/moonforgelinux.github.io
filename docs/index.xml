@@ -1,19 +1,44 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Documentation on Moonforge</title><link>https://www.moonforgelinux.org/docs/</link><description>Recent content in Documentation on Moonforge</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://www.moonforgelinux.org/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Design</title><link>https://www.moonforgelinux.org/docs/design/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/design/</guid><description>&lt;p>&lt;strong>Note&lt;/strong>: This is a living document that describes the current design policy
-for Moonforge.&lt;/p>
-&lt;p>For a high level description of the design goals of Moonforge, see the
-&lt;a href="https://www.moonforgelinux.org/goals/">Goals&lt;/a> page.&lt;/p>
-&lt;h2 id="releases">Releases&lt;/h2>
-&lt;h3 id="channels">Channels&lt;/h3>
-&lt;p>Moonforge releases follow three channels:&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Documentation on Moonforge</title><link>https://www.moonforgelinux.org/docs/</link><description>Recent content in Documentation on Moonforge</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://www.moonforgelinux.org/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Getting Started</title><link>https://www.moonforgelinux.org/docs/getting-started/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/getting-started/</guid><description>&lt;p>This page gets you from zero to a running Moonforge image as quickly as possible. It
+uses the QEMU x86-64 target, so that you do not need any physical hardware to complete
+it.&lt;/p>
+&lt;h2 id="1-install-prerequisites">1. Install prerequisites&lt;/h2>
+&lt;p>You need a Linux host with the following tools installed.&lt;/p>
+&lt;h3 id="docker-or-podman">Docker or Podman&lt;/h3>
+&lt;p>&lt;code>kas-container&lt;/code> uses a container engine to provide a hermetic Yocto build environment.
+Install either Docker or Podman:&lt;/p>
+&lt;pre tabindex="0">&lt;code># Fedora
+sudo dnf install docker
+sudo systemctl enable --now docker
+
+# Ubuntu
+sudo apt update &amp;amp;&amp;amp; sudo apt install docker.io
+sudo systemctl enable --now docker
+&lt;/code>&lt;/pre>&lt;p>If you prefer Podman (daemonless, no root required):&lt;/p></description></item><item><title>FAQ</title><link>https://www.moonforgelinux.org/docs/faq/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/faq/</guid><description>&lt;h2 id="what-is-moonforge">What is Moonforge?&lt;/h2>
+&lt;p>Moonforge is a set of well-maintained, composable Yocto layers that lets you assemble
+a custom, immutable, production-ready Linux OS for embedded devices or
+single-application environments. It is not a general-purpose Linux distribution and it
+is not a complete embedded distro you flash as-is, it is a framework you build on top
+of.&lt;/p>
+&lt;h2 id="is-moonforge-a-linux-distribution">Is Moonforge a Linux distribution?&lt;/h2>
+&lt;p>Not in the traditional sense. A traditional Linux distribution (Debian, Fedora, Alpine)
+ships a fixed set of packages you install and update at runtime using a package manager.
+Moonforge produces immutable OS images: the root filesystem is built once, is read-only
+at runtime, and is replaced atomically via A/B partition switching when an update is
+applied. There is no package manager running on the device.&lt;/p></description></item><item><title>Design</title><link>https://www.moonforgelinux.org/docs/design/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/design/</guid><description>&lt;blockquote>
+&lt;p>&lt;strong>Note:&lt;/strong> This is a living document that describes the current design policy for Moonforge.
+For the high-level goals that motivate these decisions, see the &lt;a href="https://www.moonforgelinux.org/goals/">Goals&lt;/a> page.&lt;/p>&lt;/blockquote>
+&lt;h2 id="architecture-overview">Architecture overview&lt;/h2>
+&lt;p>A Moonforge OS image is assembled by composing a set of Yocto layers managed with
+&lt;a href="https://kas.readthedocs.io/">kas&lt;/a>. The layers are grouped into three categories:&lt;/p>
 &lt;ul>
-&lt;li>&lt;strong>stable&lt;/strong>, the current stable release&lt;/li>
-&lt;li>&lt;strong>next&lt;/strong>, the next stable release&lt;/li>
-&lt;li>&lt;strong>main&lt;/strong>, the main development branch&lt;/li>
+&lt;li>&lt;strong>Distro layer&lt;/strong> (&lt;code>meta-moonforge-distro&lt;/code>): the mandatory base. Establishes the
+distribution identity, partition layout, and the read-only root filesystem policy.&lt;/li>
+&lt;li>&lt;strong>BSP layers&lt;/strong> (&lt;code>meta-moonforge-qemu&lt;/code>, &lt;code>meta-moonforge-raspberrypi&lt;/code>, …):hardware
+support. Exactly one BSP layer is included per image.&lt;/li>
+&lt;li>&lt;strong>Feature layers&lt;/strong> (&lt;code>meta-moonforge-docker&lt;/code>, &lt;code>meta-moonforge-rauc&lt;/code>, …): optional
+capabilities. Any combination may be included.&lt;/li>
 &lt;/ul>
-&lt;p>Each channel uses a separate branch tracks the corresponding Yocto branch:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>stable&lt;/strong> tracks the current LTS release branch&lt;/li>
-&lt;li>&lt;strong>next&lt;/strong> tracks the next LTS release branch, once it&amp;rsquo;s available&lt;/li>
-&lt;li>&lt;strong>main&lt;/strong> tracks the current development branch&lt;/li>
-&lt;/ul>
-&lt;p>Each branch tracks one version of Yocto only.&lt;/p></description></item></channel></rss>
+&lt;p>Every layer ships a kas YAML fragment that declares its external repository dependencies,
+activates the required BitBake layers, and sets sensible default &lt;code>local.conf&lt;/code> values.
+This means adding a feature to your image is a one-line change to your kas configuration
+file.&lt;/p></description></item></channel></rss>

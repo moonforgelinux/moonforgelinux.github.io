@@ -1,132 +1,152 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Layers on Moonforge</title><link>https://www.moonforgelinux.org/docs/layers/</link><description>Recent content in Layers on Moonforge</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://www.moonforgelinux.org/docs/layers/index.xml" rel="self" type="application/rss+xml"/><item><title>meta-moonforge-distro</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-distro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-distro/</guid><description>&lt;p>This layer covers &lt;em>everything&lt;/em> that should be common to all the OS images built out of this distro layer.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Available Layers on Moonforge</title><link>https://www.moonforgelinux.org/docs/layers/</link><description>Recent content in Available Layers on Moonforge</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://www.moonforgelinux.org/docs/layers/index.xml" rel="self" type="application/rss+xml"/><item><title>meta-moonforge-distro</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-distro/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-distro/</guid><description>&lt;p>&lt;code>meta-moonforge-distro&lt;/code> is the foundation of every Moonforge OS image. It must always
+be included, all other layers depend on it.&lt;/p>
 &lt;h2 id="what-it-does">What it does&lt;/h2>
 &lt;ul>
-&lt;li>Builds a new distribution on top of a LTS openembedded-core release.&lt;/li>
-&lt;li>Provides a composable image with features enabled (e.g., read-only-rootfs, overlayfs-etc, etc).&lt;/li>
-&lt;li>Provides recipes bbappend overrides to ensure these settings and features work properly together (e.g., creates an empty &lt;code>/data&lt;/code> mount point for the persistent partition).&lt;/li>
-&lt;li>Provides an additional recipe to make CVE reports easy for people to read.&lt;/li>
+&lt;li>Defines the &lt;code>moonforge&lt;/code> Yocto distribution, built on top of a Long-Term Support (LTS)
+OpenEmbedded core release.&lt;/li>
+&lt;li>Enables &lt;code>read-only-rootfs&lt;/code> and &lt;code>overlayfs-etc&lt;/code> distro features, making the root
+filesystem immutable at runtime while still allowing runtime configuration changes
+(such as network settings) to persist across reboots via an overlay on the data
+partition.&lt;/li>
+&lt;li>Creates an empty &lt;code>/data&lt;/code> mount point for the persistent partition and ensures recipes
+that need a writable location (e.g., container storage, log rotation) are configured
+to use it.&lt;/li>
+&lt;li>Provides a custom recipe that post-processes Yocto&amp;rsquo;s raw CVE report output into a
+human-readable format, making it straightforward to review security status as part of
+CI.&lt;/li>
 &lt;/ul>
-&lt;h2 id="how-to-use-it">How to use it&lt;/h2>
-&lt;p>To use this layer, include the following kas file:&lt;/p></description></item><item><title>meta-moonforge-docker</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-docker/</guid><description>&lt;p>This layer adds and configures Docker to be able to run containers.&lt;/p>
+&lt;h2 id="why-use-it">Why use it&lt;/h2>
+&lt;p>Without this layer there is no Moonforge image. It is not optional.&lt;/p></description></item><item><title>meta-moonforge-qemu</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-qemu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-qemu/</guid><description>&lt;p>&lt;code>meta-moonforge-qemu&lt;/code> provides the board support configuration needed to build a
+Moonforge image that runs under QEMU&amp;rsquo;s x86-64 emulator. It is the fastest way to
+iterate on a Moonforge image during development, because the entire build-flash-boot
+cycle is replaced by a build-run cycle on your workstation.&lt;/p>
 &lt;h2 id="what-it-does">What it does&lt;/h2>
 &lt;ul>
-&lt;li>Provides a custom recipe to configure Docker storage (e.g., to store images on the persistent partition).&lt;/li>
-&lt;li>Extends the base image with Docker recipes and its dependencies.&lt;/li>
+&lt;li>Extends the base image with the recipes, distro settings, and &lt;code>local.conf&lt;/code>
+configurations required for &lt;code>qemux86-64&lt;/code> targets.&lt;/li>
+&lt;li>Provides a WKS (Wic Kickstart) file that describes the partition layout for a QEMU
+virtual disk image.&lt;/li>
 &lt;/ul>
-&lt;h2 id="how-to-use-it">How to use it&lt;/h2>
-&lt;p>To use this layer, include the following kas file:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">header&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">16&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">includes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">kas/include/layer/meta-moonforge-docker.yml&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="testing">Testing&lt;/h2>
-&lt;p>Once in the device, test that &lt;code>docker&lt;/code> is installed:&lt;/p></description></item><item><title>meta-moonforge-graphics</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-graphics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-graphics/</guid><description>&lt;p>This layer adds and runs a graphical environment for a kiosk-like setting.&lt;/p>
+&lt;h2 id="why-use-it">Why use it&lt;/h2>
+&lt;p>Running your Moonforge image in QEMU before flashing it to hardware saves significant
+development time. The full boot sequence, including the read-only rootfs, overlayfs-etc,
+and any systemd services you have added, behaves identically in QEMU and on real
+hardware. RAUC A/B update flows can also be tested entirely in QEMU without touching a
+physical device.&lt;/p></description></item><item><title>meta-moonforge-raspberrypi</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-raspberrypi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-raspberrypi/</guid><description>&lt;p>&lt;code>meta-moonforge-raspberrypi&lt;/code> provides the BSP (Board Support Package) configuration
+needed to build a Moonforge image for the Raspberry Pi 4 and Raspberry Pi 5.
+Given the wide availability and low cost of these boards, this is the
+most common hardware target used when getting started with Moonforge,.&lt;/p>
 &lt;h2 id="what-it-does">What it does&lt;/h2>
 &lt;ul>
-&lt;li>Extends the base image with Weston and other required recipes (e.g., adds gsettings-dekstop-schemas).&lt;/li>
-&lt;li>Provides recipes bbappend overrides and base configurations for the Weston compositor, to make it useful for kiosk-like settings (e.g., removes the top panel with default demos).&lt;/li>
+&lt;li>Extends the base image with the recipes, distro settings, and &lt;code>local.conf&lt;/code>
+configurations required for Raspberry Pi targets.&lt;/li>
+&lt;li>Provides a WKS (Wic Kickstart) file that describes the partition layout for an SD
+card: a FAT boot partition, two ext4 rootfs partitions (A and B, for RAUC A/B
+updates), and an ext4 data partition.&lt;/li>
+&lt;li>Configures the bootloader and kernel for Raspberry Pi 4 and 5.&lt;/li>
 &lt;/ul>
-&lt;h2 id="how-to-use-it">How to use it&lt;/h2>
-&lt;p>To use this layer, include the following kas file:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">header&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">16&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">includes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">kas/include/layer/meta-moonforge-graphics.yml&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>See: &lt;a href="https://github.com/moonforgelinux/meta-moonforge/blob/main/kas/include/layer/meta-moonforge-graphics.yml">meta-moonforge-graphics&lt;/a>&lt;/p></description></item><item><title>meta-moonforge-podman</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-podman/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-podman/</guid><description>&lt;p>This layer adds and configures Podman to be able to run containers.&lt;/p>
+&lt;h2 id="why-use-it">Why use it&lt;/h2>
+&lt;p>The Raspberry Pi is an excellent prototyping and validation platform. Its broad
+community support, large selection of peripherals (cameras, touchscreens, HATs), and
+availability in production quantities make it a practical target for both development
+and low-to-medium volume product deployments.&lt;/p></description></item><item><title>meta-moonforge-docker</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-docker/</guid><description>&lt;p>&lt;code>meta-moonforge-docker&lt;/code> installs and configures the Docker container runtime. Because
+the root filesystem is read-only, this layer redirects Docker&amp;rsquo;s image and container
+storage to the persistent data partition so that pulled images and running containers
+survive reboots.&lt;/p>
 &lt;h2 id="what-it-does">What it does&lt;/h2>
 &lt;ul>
-&lt;li>Provides recipes bbappend overrides to configure Podman storage (e.g., to store images on the persistent partition).&lt;/li>
-&lt;li>Extends the minimal base image with Podman recipes and its dependencies (e.g., ca-certificates to be able to pull images from public registries).&lt;/li>
+&lt;li>Installs the Docker engine and its dependencies into the base image.&lt;/li>
+&lt;li>Provides a custom recipe that configures Docker&amp;rsquo;s data root
+(&lt;code>/var/lib/docker&lt;/code> → &lt;code>/data/docker&lt;/code>) so that container images are stored on the
+writable persistent partition rather than the read-only rootfs.&lt;/li>
+&lt;li>Includes &lt;code>docker-compose&lt;/code> (the &lt;code>docker compose&lt;/code> plugin) for multi-container
+application definitions.&lt;/li>
 &lt;/ul>
-&lt;h2 id="how-to-use-it">How to use it&lt;/h2>
-&lt;p>To use this layer, include the following kas file:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">header&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">16&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">includes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">kas/include/layer/meta-moonforge-podman.yml&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>See: &lt;a href="https://github.com/moonforgelinux/meta-moonforge/blob/main/kas/include/layer/meta-moonforge-podman.yml">meta-moonforge-podman&lt;/a>&lt;/p></description></item><item><title>meta-moonforge-qemu</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-qemu/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-qemu/</guid><description>&lt;p>This layer provides auxiliary assets for QEMU builds.&lt;/p>
-&lt;h2 id="what-is-does">What is does&lt;/h2>
-&lt;ul>
-&lt;li>Extends the base image with recipes, distro and local configurations to build images for qemux86-64.&lt;/li>
-&lt;/ul>
-&lt;h2 id="how-to-use-it">How to use it&lt;/h2>
-&lt;p>To use this layer, include the following kas file:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">header&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">16&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">includes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">kas/include/layer/meta-moonforge-qemu.yml&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">local_conf_header&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">20_meta-moonforge-qemu&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> WKS_FILE = &amp;#34;moonforge-image-base-qemux86-64.wks.in&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">machine&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">qemux86-64&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>See: &lt;a href="https://github.com/moonforgelinux/meta-moonforge/blob/main/kas/include/layer/meta-moonforge-qemu.yml">meta-moonforge-qemu&lt;/a>&lt;/p>
-&lt;h2 id="testing">Testing&lt;/h2>
-&lt;p>To use &lt;code>runqemu&lt;/code>:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sh" data-lang="sh">&lt;span class="line">&lt;span class="cl">$ &lt;span class="nb">cd&lt;/span> meta-moonforge
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ kas-container --runtime-args &lt;span class="s2">&amp;#34;--device=/dev/kvm&amp;#34;&lt;/span> shell kas/moonforge-image-base-qemux86-64.yml:kas/common/debug.yml
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ bitbake -c build moonforge-image-base ovmf
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ bzip2 -df tmp/deploy/images/qemux86-64/moonforge-image-base-qemux86-64.rootfs.wic.bz2
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$ runqemu snapshot kvm nographic slirp ovmf qemux86-64 tmp/deploy/images/qemux86-64/moonforge-image-base-qemux86-64.rootfs.wic
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>meta-moonforge-raspberrypi</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-raspberrypi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-raspberrypi/</guid><description>&lt;p>This layer adds support for the Raspberry Pi 5 and 4.&lt;/p>
+&lt;h2 id="why-use-it">Why use it&lt;/h2>
+&lt;p>Docker is the most widely supported container runtime and the natural choice when your
+team already uses Docker images and Compose files for development and deployment. If you
+prefer a daemonless runtime, see &lt;a href="../moonforge-podman/">&lt;code>meta-moonforge-podman&lt;/code>&lt;/a> instead.&lt;/p></description></item><item><title>meta-moonforge-podman</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-podman/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-podman/</guid><description>&lt;p>&lt;code>meta-moonforge-podman&lt;/code> installs and configures &lt;a href="https://podman.io/">Podman&lt;/a>, a
+daemonless container runtime that is compatible with Docker&amp;rsquo;s CLI and image format.
+Like the Docker layer, it redirects container storage to the persistent data partition
+to survive reboots of the read-only rootfs.&lt;/p>
 &lt;h2 id="what-it-does">What it does&lt;/h2>
 &lt;ul>
-&lt;li>Extends the base image with recipes, distro and local configurations to build images for the Raspberry Pi.&lt;/li>
+&lt;li>Installs Podman and its runtime dependencies into the base image.&lt;/li>
+&lt;li>Configures Podman&amp;rsquo;s storage location to &lt;code>/data/containers&lt;/code> on the writable persistent
+partition.&lt;/li>
+&lt;li>Adds &lt;code>ca-certificates&lt;/code> so that images can be pulled from public registries (Docker
+Hub, GitHub Container Registry, etc.) without additional setup.&lt;/li>
 &lt;/ul>
-&lt;h2 id="how-to-use-it">How to use it&lt;/h2>
-&lt;p>To use this layer, include the following kas file:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">header&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">16&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">includes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">kas/include/layer/meta-moonforge-raspberrypi.yml&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">local_conf_header&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">30_meta-moonforge-raspberrypi&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> WKS_FILE = &amp;#34;moonforge-image-base-raspberrypi.wks.in&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">machine&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">raspberrypi5&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>See: &lt;a href="https://github.com/moonforgelinux/meta-moonforge/blob/main/kas/include/layer/meta-moonforge-raspberrypi.yml">meta-moonforge-raspberrypi&lt;/a>&lt;/p>
-&lt;h2 id="testing">Testing&lt;/h2>
-&lt;p>The built image can be flashed with &lt;code>bmaptool&lt;/code>:&lt;/p></description></item><item><title>meta-moonforge-rauc</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-rauc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-rauc/</guid><description>&lt;p>This layer adds RAUC support to manage OS updates.&lt;/p>
+&lt;h2 id="why-use-it">Why use it&lt;/h2>
+&lt;p>Podman is a compelling choice for embedded products for two reasons. First, it is
+daemonless, containers are launched directly by the calling process rather than
+through a long-running background daemon, which reduces the attack surface and
+eliminates a potential single point of failure. Second, Podman supports rootless
+containers, allowing applications to run container workloads without requiring root
+privileges on the host.&lt;/p></description></item><item><title>meta-moonforge-rauc</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-rauc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-rauc/</guid><description>&lt;p>&lt;code>meta-moonforge-rauc&lt;/code> integrates &lt;a href="https://rauc.io/">RAUC&lt;/a>, the Robust Auto-Update
+Controller, into a Moonforge image. RAUC implements atomic A/B partition switching so
+that a failed update always leaves the device in a known-good state.&lt;/p>
 &lt;h2 id="what-it-does">What it does&lt;/h2>
 &lt;ul>
-&lt;li>Provides a common recipes to build RAUC bundles.&lt;/li>
-&lt;li>Provides demo certificates to make it easier to sign bundles and test these locally.&lt;/li>
-&lt;li>Extends the base image with recipes for setting up RAUC and its dependencies.&lt;/li>
-&lt;li>Extends the base image with distro and local configurations to build images.&lt;/li>
+&lt;li>Installs the RAUC client daemon and its dependencies.&lt;/li>
+&lt;li>Provides a common recipe for building signed RAUC update bundles as part of the
+normal image build, every build produces both an OS image and an OTA bundle.&lt;/li>
+&lt;li>Includes demo development certificates (key and certificate chain) so that bundles
+can be signed and tested locally without needing to set up a PKI from scratch.&lt;/li>
+&lt;li>Configures the image&amp;rsquo;s bootloader integration (via RAUC&amp;rsquo;s bootloader backends) to
+mark slots as good or bad after an update attempt.&lt;/li>
 &lt;/ul>
-&lt;h2 id="how-to-use-it">How to use it&lt;/h2>
-&lt;p>To use this layer, include the following kas file:&lt;/p></description></item><item><title>meta-moonforge-rauc-update</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-rauc-update/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-rauc-update/</guid><description>&lt;p>This layer adds a simple update service for RAUC.&lt;/p>
+&lt;h2 id="why-use-it">Why use it&lt;/h2>
+&lt;p>Reliable OTA updates are non-negotiable for any device deployed in the field. RAUC&amp;rsquo;s
+A/B approach means:&lt;/p></description></item><item><title>meta-moonforge-rauc-update</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-rauc-update/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-rauc-update/</guid><description>&lt;p>&lt;code>meta-moonforge-rauc-update&lt;/code> provides a lightweight systemd service that periodically
+checks a configured URL for a new RAUC bundle and applies it automatically. It is
+designed to complement &lt;a href="../moonforge-rauc/">&lt;code>meta-moonforge-rauc&lt;/code>&lt;/a>, which handles the
+low-level bundle verification and partition switching.&lt;/p>
 &lt;h2 id="what-it-does">What it does&lt;/h2>
 &lt;ul>
-&lt;li>Provides a custom recipe to trigger RAUC client updates on a timer.&lt;/li>
+&lt;li>Provides a custom &lt;code>rauc-update.service&lt;/code> systemd unit that downloads and installs a
+RAUC bundle from a given URL.&lt;/li>
+&lt;li>Runs on a systemd timer, so that devices check for updates automatically at regular
+intervals without any operator intervention.&lt;/li>
+&lt;li>Optionally forces a reboot immediately after a successful update, so that the new
+slot is activated as soon as possible.&lt;/li>
 &lt;/ul>
-&lt;h2 id="how-to-use-it">How to use it&lt;/h2>
-&lt;p>To use this layer, include the following kas file:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">header&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">16&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">includes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">kas/include/layer/meta-moonforge-rauc-update.yml&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">local_conf_header&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">40_meta-moonforge-rauc-update&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> RAUC_BUNDLE_URL = &amp;#34;http://10.0.2.2:3333/LATEST.raucb&amp;#34;
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> RAUC_FORCE_REBOOT_ON_UPDATE = &amp;#34;1&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>Note&lt;/strong>: &lt;code>RAUC_FORCE_REBOOT_ON_UPDATE&lt;/code> will force a system reboot, therefore running applications must have inhibitors in place to handle this scenario.&lt;/p></description></item><item><title>meta-moonforge-wpe</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-wpe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-wpe/</guid><description>&lt;p>This layer adds WPE Webkit to display a given URL in a kiosk-like setting.&lt;/p>
+&lt;h2 id="why-use-it">Why use it&lt;/h2>
+&lt;p>For products that need a simple, fire-and-forget update mechanism, where devices should
+just stay current without requiring any fleet management infrastructure, this layer
+provides a minimal but functional solution out of the box. More sophisticated update
+orchestration (staged rollouts, canary deployments, rollback policies) can be layered
+on top by replacing or wrapping the service from a downstream layer.&lt;/p></description></item><item><title>meta-moonforge-graphics</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-graphics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-graphics/</guid><description>&lt;p>&lt;code>meta-moonforge-graphics&lt;/code> installs and configures &lt;a href="https://gitlab.freedesktop.org/wayland/weston">Weston&lt;/a>,
+the reference Wayland compositor, tuned for kiosk-style deployments where a single
+application occupies the full screen.&lt;/p>
 &lt;h2 id="what-it-does">What it does&lt;/h2>
 &lt;ul>
-&lt;li>Extends the minimal base image with the WPE related recipes.&lt;/li>
-&lt;li>Provides a custom recipe to launch the Cog browser and display a given URL in a fullscreen window.&lt;/li>
+&lt;li>Installs Weston and its required dependencies, including &lt;code>gsettings-desktop-schemas&lt;/code>.&lt;/li>
+&lt;li>Configures Weston for kiosk mode: the default panel and built-in demos are removed so
+that the compositor presents a bare Wayland surface ready for your application.&lt;/li>
+&lt;li>Provides a &lt;code>weston.ini&lt;/code> base configuration that can be extended from your downstream
+layer.&lt;/li>
 &lt;/ul>
-&lt;h2 id="how-to-use-it">How to use it&lt;/h2>
-&lt;p>To use this layer, include the following kas file:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">header&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">16&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">includes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">kas/include/layer/meta-moonforge-wpe.yml&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">local_conf_header&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">30_meta-moonforge-wpe&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">|&lt;/span>&lt;span class="sd">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="sd"> WAYLAND_COG_LAUNCH_URL = &amp;#34;https://www.igalia.com&amp;#34;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>Note&lt;/strong>: a different URL can be provided by overriding the &lt;code>WAYLAND_COG_LAUNCH_URL&lt;/code> variable.&lt;/p></description></item></channel></rss>
+&lt;h2 id="why-use-it">Why use it&lt;/h2>
+&lt;p>Embedded products that need a graphical output (digital signage, kiosk terminals,
+industrial HMIs, in-vehicle displays) require a compositor to manage the display
+surface. Weston is the standard choice in the embedded Linux ecosystem: it is
+lightweight, well-maintained, and fully supported by the Yocto/OpenEmbedded layer
+ecosystem.&lt;/p></description></item><item><title>meta-moonforge-wpe</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-wpe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-wpe/</guid><description>&lt;p>&lt;code>meta-moonforge-wpe&lt;/code> installs &lt;a href="https://webkit.org/wpe/">WPE WebKit&lt;/a> and the
+&lt;a href="https://github.com/Igalia/cog">Cog&lt;/a> browser shell, configured to launch a given URL
+in a fullscreen Wayland window at boot.&lt;/p>
+&lt;p>WPE (Web Platform for Embedded) is a WebKit port designed specifically for
+embedded targets: it is lightweight, GPU-accelerated when the hardware supports it,
+and actively maintained by Igalia.&lt;/p>
+&lt;h2 id="what-it-does">What it does&lt;/h2>
+&lt;ul>
+&lt;li>Installs WPE WebKit, Cog, and their runtime dependencies.&lt;/li>
+&lt;li>Provides a custom systemd service that launches Cog automatically at boot and
+navigates to the configured URL.&lt;/li>
+&lt;li>Configures Cog to run fullscreen (no address bar, no tabs, no navigation controls)
+in a Wayland/Weston surface.&lt;/li>
+&lt;/ul>
+&lt;h2 id="why-use-it">Why use it&lt;/h2>
+&lt;p>WPE is the standard WebKit port for embedded Linux devices. It gives you a
+production-quality, standards-compliant browser engine in a kiosk shell with minimal
+footprint. Common use cases include:&lt;/p></description></item></channel></rss>
