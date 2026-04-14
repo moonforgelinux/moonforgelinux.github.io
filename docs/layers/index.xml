@@ -35,7 +35,7 @@ hardware. RAUC A/B update flows can also be tested entirely in QEMU without touc
 physical device.&lt;/p></description></item><item><title>meta-moonforge-raspberrypi</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-raspberrypi/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-raspberrypi/</guid><description>&lt;p>&lt;code>meta-moonforge-raspberrypi&lt;/code> provides the BSP (Board Support Package) configuration
 needed to build a Moonforge image for the Raspberry Pi 4 and Raspberry Pi 5.
 Given the wide availability and low cost of these boards, this is the
-most common hardware target used when getting started with Moonforge,.&lt;/p>
+most common hardware target used when getting started with Moonforge.&lt;/p>
 &lt;h2 id="what-it-does">What it does&lt;/h2>
 &lt;ul>
 &lt;li>Extends the base image with the recipes, distro settings, and &lt;code>local.conf&lt;/code>
