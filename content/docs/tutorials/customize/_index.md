@@ -39,6 +39,7 @@ To add a new layer, enter the *kas-container* shell and run *bitbake-layers* as 
 
 ```sh
 $ cd meta-derivative
+$ git init # needed for kas to recognize the project as a repository
 $ kas-container shell kas/derivative-image-base-raspberrypi5.yml
 $ cd /work/
 $ bitbake-layers create-layer meta-derivative-distro --priority 20
