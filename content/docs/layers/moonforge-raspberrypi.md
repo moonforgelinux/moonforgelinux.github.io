@@ -10,7 +10,7 @@ description: >
 `meta-moonforge-raspberrypi` provides the BSP (Board Support Package) configuration
 needed to build a Moonforge image for the Raspberry Pi 4 and Raspberry Pi 5. 
 Given the wide availability and low cost of these boards, this is the 
-most common hardware target used when getting started with Moonforge,.
+most common hardware target used when getting started with Moonforge.
 
 ## What it does
 
