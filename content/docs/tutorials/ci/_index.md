@@ -128,3 +128,7 @@ Additionally, it's also recommended to take a few extras steps setting up the bu
 * Ensure the build machine has no access to sensitive networks. This is to prevent a malicious actor from sniffing from office traffic.
 * Ideally, use [ephemeral runners](https://docs.github.com/en/actions/reference/runners/self-hosted-runners#ephemeral-runners-for-autoscaling) when possible. Alternatively, [force](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/customize-containers) all jobs to execute in containers. 
 
+## A working example
+
+A full working [example](https://github.com/moonforgelinux/meta-moonforge/blob/main/.github/workflows/main.yml) of all the topics covered is this tutorial is available at the meta-moonforge repository. Check it out!
+
