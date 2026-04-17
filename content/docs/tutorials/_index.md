@@ -59,7 +59,7 @@ own distribution name and version.
 
 Use Moonforge's GitHub actions to build and upload OS images in your CI workflows (e.g., on pull-requests or when pushing changes to the default branch).
 
-**Time:** 1–4 hours (not accounting for setting up the self-hosted GitHub runner).
+**Time:** 1–4 hours (mostly build time on first run but, self-hosted runner and storage service already set up).
 
 ## What you will build
 

@@ -12,7 +12,7 @@ This tutorial briefly describes how derivative projects can leverage Moonforge's
 
 Building images is a compute intensive task. Therefore, the most common approach to reduce cost is to rely on [self-hosted runners](https://docs.github.com/en/actions/concepts/runners/self-hosted-runners).
 
-GitHub's integration for self-hosted runner it's straightforward but, to use Moonforge's GitHub actions, the build machine requires a few preparations.
+GitHub's integration for self-hosted runners it's straightforward but, to use Moonforge's GitHub actions, the build machine requires a few preparations.
 
 The specifications for the build machine are no different from the build machine used in the other tutorials. For reference, see following requirements:
 
@@ -21,7 +21,7 @@ The specifications for the build machine are no different from the build machine
 * At least 32 Gbytes of RAM.
 * At least 8 CPU cores.
 
-Note that the above specifications are the [minimal requirements](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#compatible-linux-distribution). It's strongly recommended to provide additional computing resources when possible to maximize build performance.
+Note that the above specifications are [recommended requirements](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#compatible-linux-distribution) but, these could vary depending on what packages are built. It's possible to [throttle](https://github.com/moonforgelinux/meta-moonforge/blob/main/kas/common/throttle.yml) builds when computing resources are limited.
 
 Once installed, the Linux system installation requires:
 
@@ -29,7 +29,7 @@ Once installed, the Linux system installation requires:
 * The Docker package properly installed and configured. Make sure to include the non-privileged user to the *docker* group, so container actions can be executed.
 * Creation of the cache directories for the downloads and shared-state cache (e.g., `mkdir -p ~/kas/cache/{downloads,sstate-cache}`).
 
-Finally, the installation of the GitHub runner service as described in the [official documentation](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/add-runners). It's recommended to install the runner [as a service](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/configure-the-application) so it can automatically restart when the systems restarts.
+Finally, the installation of the GitHub runner service as described in the [official documentation](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/add-runners). We recommend to install the runner [as a service](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/configure-the-application) so it can automatically restart when the systems restarts.
 
 To test the runner, add a minimal workflow file to your repository:
 
@@ -43,13 +43,13 @@ jobs:
       - run: echo "It's working!"
 ```
 
-See GitHub's official [quickstart guide](https://docs.github.com/en/actions/get-started/quickstart) for details.
+See GitHub's official [quickstart guide](https://docs.github.com/en/actions/get-started/quickstart) for details on how to write workflow files.
 
 ## Building images
 
-The benefit of containerized solutions, like *kas-container*, is that it guarantees a consistent environment for local and remote builds. Therefore, it's recommended to use *kas-container* also in CI workflows.
+The benefit of containerized solutions, like *kas-container*, is that it guarantees a consistent environment for local and remote builds. Therefore, we recommend to use *kas-container* also in CI workflows.
 
-To facilitate this, Moonforge provides [build-moonforge-action](https://github.com/moonforgelinux/build-moonforge-action). This GitHub action handles the proper setup and execution of *kas-container*, and provides cleaning and validation steps to minimize its footprint on the build machine. Additionally, it handles other Moonforge specifics (e.g., propagation of the IMAGE_VERSION).
+To facilitate this, Moonforge provides a GitHub action called [build-moonforge-action](https://github.com/moonforgelinux/build-moonforge-action), that handles the proper setup and execution of *kas-container*, and includes cleaning and validation steps to minimize its footprint on the build machine. Additionally, it handles other Moonforge specifics (e.g., propagation of the IMAGE_VERSION).
 
 To build an image using this action, extend your workflow file as follows:
 
@@ -73,13 +73,13 @@ The OS images and other build artifacts can be found under the `./build/tmp/depl
 
 **Note**: The above example assumes a single runner. If multiple self-hosted runners are used, the [cached](https://wiki.yoctoproject.org/wiki/Enable_sstate_cache) directories must be shared among the runners (e.g., through NFS).
 
-See the actions's [README](https://github.com/moonforgelinux/build-moonforge-action/blob/main/README.md) for details.
+See the actions's [README](https://github.com/moonforgelinux/build-moonforge-action/blob/main/README.md) for details on how to use it in your workflow file.
 
 ## Uploading images
 
 Considering the size and the amount of images and other build artifacts, the GitHub artifacts offering can be [limiting](https://docs.github.com/en/actions/reference/limits#storage-limits-for-all-github-hosted-runners). A common alternative is to upload images to other storage solutions like AWS S3 and compatible services.
 
-To facilitate this, Moonforge provides [upload-moonforge-action](https://github.com/moonforgelinux/upload-moonforge-action). This GitHub action can upload selective files and entire directories to a S3 bucket or to a compatible service.
+To facilitate this, Moonforge provides a GitHub action called [upload-moonforge-action](https://github.com/moonforgelinux/upload-moonforge-action), that can upload selective files and entire directories to an S3 bucket or a compatible service.
 
 To upload images using this action, extend your workflow file as follows:
 
@@ -106,7 +106,7 @@ jobs:
 
 Each storage service provides different solutions for browsing these uploaded files. If none is provided, a custom solution can be built using [s3fs](https://github.com/s3fs-fuse/s3fs-fuse) in combination with [nginx](https://nginx.org/).
 
-See actions's [README](https://github.com/moonforgelinux/upload-moonforge-action/blob/main/README.md) for details.
+See the actions's [README](https://github.com/moonforgelinux/upload-moonforge-action/blob/main/README.md) for details on how to use it in your workflow file.
 
 ## Security considerations
 
@@ -122,10 +122,10 @@ The following are recommended GitHub organization and repository settings when u
 * Use *CODEOWNERS* for sensitive project files (e.g., everything under *.github/*). This is for requesting additional approvals before merging sensitive changes.
 * Avoid using *pull_request_target* in your workflows. This is to prevent the exposure of repository secrets to external contributors.
 
-Additionally, it's also recommended to take a few extras steps setting up the build machine:
+Additionally, it's also a good idea to take a few extras steps when setting up the build machine:
 
 * Double check that the runner's user has limited privileges (e.g., can't sudo). This is to prevent a malicious actor from modifying the build machine.
-* Ensure the build machine has no access to sensitive networks. This is to prevent a malicious actor from sniffing from office traffic.
+* Ensure the build machine has no access to sensitive networks. This is to prevent a malicious actor from sniffing office traffic.
 * Ideally, use [ephemeral runners](https://docs.github.com/en/actions/reference/runners/self-hosted-runners#ephemeral-runners-for-autoscaling) when possible. Alternatively, [force](https://docs.github.com/en/actions/how-tos/manage-runners/self-hosted-runners/customize-containers) all jobs to execute in containers. 
 
 ## A working example
