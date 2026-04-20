@@ -55,9 +55,15 @@ own distribution name and version.
 
 **Time:** 30–60 minutes (build cache is warm from the previous tutorial).
 
+### [Add Continuous Integration](./ci/)
+
+Use Moonforge's GitHub actions to build and upload OS images in your CI workflows (e.g., on pull-requests or when pushing changes to the default branch).
+
+**Time:** 1–4 hours (mostly build time on first run, assuming that the self-hosted runner and storage service are already set up).
+
 ## What you will build
 
-By the end of both tutorials you will have:
+By the end of these tutorials you will have:
 
 - A working `meta-derivative` repository structure you can use as the foundation for
   your own product.
@@ -67,3 +73,4 @@ By the end of both tutorials you will have:
   partition.
 - A RAUC OTA update bundle generated automatically alongside the image.
 - A custom distro name and version visible in `/etc/os-release` on the running device.
+- A basic GitHub workflow for building and publishing your derivative images with CI.
