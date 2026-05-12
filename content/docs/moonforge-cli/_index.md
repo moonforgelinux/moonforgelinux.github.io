@@ -11,6 +11,13 @@ to quickly set up a Moonforge project for a given target machine, and enable
 features that are part of the Moonforge project, in a way that conforms to
 the design goals of Moonforge.
 
+## Installation
+
+### From GitHub
+
+1. Clone the [moonforge-cli](https://github.com/moonforgelinux/moonforge-cli) repository
+2. Enter the clone and run: `pip install --user -e .`
+
 ## Commands
 
 A complete reference of every `moonforge` command and options.
