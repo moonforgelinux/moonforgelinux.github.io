@@ -60,6 +60,40 @@ initialization time; the `init` command will take care of defining the
 various kas files and the necessary repositories, as well as creating the
 distro layer for your Moonforge project.
 
+#### Examples
+
+- Initialize a new project:
+
+```
+moonforge init derivative
+```
+
+- Initialize a new project for Raspberry Pi 5:
+
+```
+moonforge init --machine=raspberrypi5 derivative
+```
+
+- Initialize a new project with RAUC simple updates and Podman support:
+
+```
+moonforge init \
+  --feature rauc-simple \
+  --feature podman \
+  derivative
+```
+
+- Initialize the current directory as Moonforge project with Docker support,
+  and WPE support, pointing to the Moonforge website:
+
+```
+moonforge init \
+  --feature docker
+  --feature graphics-wpe \
+  --variable WAYLAND_COG_LAUNCH_URL=https://moonforgelinux.org
+  derivative
+```
+
 ### `feature`
 
 Show feature information.
