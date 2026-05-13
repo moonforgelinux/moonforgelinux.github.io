@@ -1,12 +1,12 @@
 ---
-title: "moonforge-cli"
-linkTitle: "moonforge-cli"
+title: "Moonforge CLI"
+linkTitle: "Moonforge CLI"
 weight: 30
 description: >
   Tool for developing and maintaining a Moonforge project.
 ---
 
-The Moonforge CLI is a tool for initialize Moonforge projects. It allows you
+The Moonforge CLI is a tool for managing Moonforge projects. It allows you
 to quickly set up a Moonforge project for a given target machine, and enable
 features that are part of the Moonforge project, in a way that conforms to
 the design goals of Moonforge.
@@ -69,25 +69,27 @@ distro layer for your Moonforge project.
 
 #### Examples
 
-- Initialize a new project:
+- Initialize a new project called "derivative" in the `meta-derivative`
+  directory:
 
 ```
-moonforge init derivative
+moonforge init --name=derivative meta-derivative
 ```
 
-- Initialize a new project for Raspberry Pi 5:
+- Initialize a new project for Raspberry Pi 5 in the current directory:
 
 ```
-moonforge init --machine=raspberrypi5 derivative
+moonforge init --machine=raspberrypi5 --name=derivative
 ```
 
 - Initialize a new project with RAUC simple updates and Podman support:
 
 ```
 moonforge init \
+  --name derivative \
   --feature rauc-simple \
   --feature podman \
-  derivative
+  meta-derivative
 ```
 
 - Initialize the current directory as Moonforge project with Docker support,
@@ -95,10 +97,11 @@ moonforge init \
 
 ```
 moonforge init \
+  --name derivative \
   --feature docker
   --feature graphics-wpe \
   --variable WAYLAND_COG_LAUNCH_URL=https://moonforgelinux.org
-  derivative
+  meta-derivative
 ```
 
 ### `feature`
