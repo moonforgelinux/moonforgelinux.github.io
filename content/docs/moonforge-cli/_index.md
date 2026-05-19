@@ -16,11 +16,9 @@ the design goals of Moonforge.
 ### From GitHub
 
 1. Clone the [moonforge-cli](https://github.com/moonforgelinux/moonforge-cli) repository
-2. Enter the clone and run: `pip install --user -e .`
+2. Enter the cloned directory and run: `pip install --user -e .`
 
 ## Commands
-
-A complete reference of every `moonforge` command and options.
 
 ### `init`
 
@@ -31,8 +29,8 @@ Initialize a Moonforge project.
 ```
 moonforge init [-h] [-q] [--fatal-warnings] [--name NAME]
                [--machine MACHINE] [--feature FEATURE]
-	       [--variable KEY=VALUE] [--vcs VCS]
-	       PATH
+               [--variable KEY=VALUE] [--vcs VCS]
+               PATH
 ```
 
 #### Arguments
@@ -92,7 +90,7 @@ moonforge init \
   meta-derivative
 ```
 
-- Initialize the current directory as Moonforge project with Docker support,
+- Initialize the current directory as a Moonforge project with Docker support,
   and WPE support, pointing to the Moonforge website:
 
 ```
