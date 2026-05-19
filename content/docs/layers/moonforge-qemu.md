@@ -67,16 +67,15 @@ Build the image and OVMF firmware together:
 
 ```
 $ kas-container --runtime-args "--device=/dev/kvm" \
-    shell kas/moonforge-image-base-qemux86-64.yml:kas/common/debug.yml
+    shell kas/examples/moonforge-image-base-qemux86-64.yml:kas/common/debug.yml
 $ bitbake -c build moonforge-image-base ovmf
 ```
 
 Decompress the disk image and launch it with `runqemu`:
 
 ```
-$ bzip2 -dk tmp/deploy/images/qemux86-64/moonforge-image-base-qemux86-64.rootfs.wic.bz2
-$ runqemu snapshot kvm nographic slirp ovmf qemux86-64 \
-    tmp/deploy/images/qemux86-64/moonforge-image-base-qemux86-64.rootfs.wic
+$ bzip2 -df tmp/deploy/images/qemux86-64/moonforge-image-base-qemux86-64.rootfs.wic.bz2
+$ runqemu snapshot kvm nographic slirp ovmf qemux86-64 moonforge-image-base wic
 ```
 
 The `snapshot` flag tells QEMU to write all disk changes to a temporary overlay rather
