@@ -22,6 +22,8 @@ If you are new to Moonforge, work through the documentation in this order:
    product needs.
 3. **[Tutorials](./tutorials/)** - follow step-by-step guides to build and customise your
    first OS image.
+4. **[Moonforge CLI](./moonforge-cli/)** - use the Moonforge command line tool to set up
+   your project.
 
 If you already have a working image and want to extend it, jump directly to
 [Customize a Moonforge OS](./tutorials/customize/).
