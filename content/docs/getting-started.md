@@ -15,9 +15,17 @@ it.
 
 You need a Linux host with the following tools installed.
 
+### Moonforge-cli
+
+The `moonforge` command line tool simplifies the initialization and build of
+a Moonforge project.
+
+See the [`moonforge` documentation](./moonforge-cli/) for installation
+instructions and the list of available commands.
+
 ### Docker or Podman
 
-`kas-container` uses a container engine to provide a hermetic Yocto build environment.
+`moonforge build` uses a container engine to provide a hermetic Yocto build environment.
 Install either Docker or Podman:
 
 ```
@@ -40,23 +48,6 @@ sudo dnf install podman
 sudo apt install podman
 ```
 
-### kas
-
-`kas` is the build orchestration tool used by all Moonforge projects:
-
-```
-pip install --user kas==5.0
-kas-container --version
-```
-
-If `kas-container` is not found after installation, ensure `~/.local/bin` is in your
-`PATH`:
-
-```
-echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-```
-
 ### Disk space
 
 Allocate at least **100 GB** of free disk space for the first build. Most of this is
@@ -73,69 +64,39 @@ cd ~/moonforge-workspace
 
 ## 3. Create your derivative repository
 
-A Moonforge-based product lives in a downstream repository. Clone the
-`meta-derivative` example as a starting point:
+A Moonforge-based product lives in a downstream repository. Use the
+`moonforge init` command to initialize a Moonforge project:
 
 ```
-git clone https://github.com/moonforgelinux/meta-derivative.git
-cd meta-derivative
+moonforge init --name=myproduct meta-myproduct
 ```
 
-Or create a fresh repository from scratch:
+The command amove will create a new Moonforge project repository under the
+`meta-myproduct` directory, targeting QEMU.
 
-```
-mkdir meta-myproduct && cd meta-myproduct
-git init
-mkdir kas
-```
+Inside the repository you will find a kas configuration file called `kas/myproduct-image-base-qemux86-64.yml`.
 
-## 4. Write a kas configuration file
-
-Create a kas configuration file that targets QEMU:
-
-```
-cat > kas/myproduct-image-qemux86-64.yml << 'EOF'
-header:
-  version: 16
-  includes:
-    - repo: meta-moonforge
-      file: kas/include/layer/meta-moonforge-distro.yml
-    - repo: meta-moonforge
-      file: kas/include/layer/meta-moonforge-qemu.yml
-
-local_conf_header:
-  20_meta-moonforge-distro: |
-    OVERLAYFS_ETC_DEVICE = "/dev/sda3"
-  20_meta-moonforge-qemu: |
-    WKS_FILE = "moonforge-image-base-qemux86-64.wks.in"
-
-repos:
-  meta-moonforge:
-    url: https://github.com/moonforgelinux/meta-moonforge.git
-    commit: 42b1aeefb1327785c48925e62719fa13d55c8e13
-    branch: main
-
-machine: qemux86-64
-EOF
-```
-
-## 5. Set up the cache directories
+## 4. Set up the cache directories
 
 Export the cache paths before building so that downloads and shared-state objects are
 stored outside the build tree and survive `cleansstate` or directory removal:
 
 ```
-export KAS_CONTAINER_ENGINE=docker   # or: podman
-export DL_DIR=$HOME/moonforge-workspace/cache/downloads
-export SSTATE_DIR=$HOME/moonforge-workspace/cache/sstate-cache
+cd meta-myproduct
+moonforge config set container.engine docker  # or: podman
+moonforge config set build.download_dir $HOME/moonforge-workspace/cache/downloads
+moonforge config set build.sstate_dir $HOME/moonforge-workspace/cache/sstate-cache
 ```
 
-Add these exports to your shell profile if you want them to persist across sessions.
+The configuration will be stored inside the project directory.
+
+You can also configure `moonforge`'s default settings for your user, so they
+will apply to all Moonforge projects.
 
 ## 6. Build the image
 
 ```
-kas-container build kas/myproduct-image-qemux86-64.yml
+moonforge build meta-myproduct
 ```
 
 The first build downloads all sources and populates the shared-state cache. Expect it
@@ -144,15 +105,19 @@ configuration typically complete in **5–15 minutes** thanks to the cache.
 
 ## 7. Boot the image in QEMU
 
-Decompress the disk image and launch it:
+Decompress the disk image and open a shell inside the Moonforge build
+environment:
 
 ```
 bzip2 -dk build/tmp/deploy/images/qemux86-64/moonforge-image-base-qemux86-64.rootfs.wic.bz2
 
-kas-container --runtime-args "--device=/dev/kvm" \
-  shell kas/myproduct-image-qemux86-64.yml -- \
-  runqemu snapshot kvm nographic slirp ovmf qemux86-64 \
-  tmp/deploy/images/qemux86-64/moonforge-image-base-qemux86-64.rootfs.wic
+moonforge shell --runtime-args "--device=/dev/kvm" meta-moonforge
+```
+
+Then launch the disk image with `runqemu`:
+
+```
+runqemu snapshot kvm nographic slirp ovmf qemux86-64 /build/tmp/deploy/images/qemux86-64/moonforge-image-base-qemux86-64.rootfs.wic
 ```
 
 Log in as `root` (no password on debug builds). Explore the running system:
