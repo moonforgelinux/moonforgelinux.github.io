@@ -102,6 +102,221 @@ moonforge init \
   meta-derivative
 ```
 
+### `config`
+
+Configure the Moonforge CLI tool
+
+#### Usage
+
+```
+moonforge config [-h] [-q] [--fatal-warnings] [--project] [--user] ACTION [KEY] [VALUE]
+```
+
+#### Arguments
+
+- `-h`, `--help`: Show the help message and exit.
+
+- `-q`, `--quiet`: Suppress messages except warnings and errors.
+
+- `--fatal-warnings`: Turn warnings into errors.
+
+- `--project`: Use the project's local configuration file.
+
+- `--user`: Use the user's global configuration file.
+
+- `ACTION`: The action to perform: `list`, `get`, `set`
+
+- `KEY`: The configuration key to use.
+
+- `VALUE`: The value of the configuration key.
+
+#### Description
+
+The config command queries, sets, and lists the configuration options for the Moonforge CLI tool.
+
+Each configuration key is composed of a section and a name, separated by a dot.
+
+The config command supports the following actions:
+
+- `list`: Lists all the keys set in the configuration files, along with their value
+- `get`: Prints the value of the given key
+- `set`: Sets the value of the given key
+
+Moonforge uses different configuration files; they are, in order of precendence from least important to most important:
+
+- user configuration, stored under `XDG_CONFIG_HOME/moonforge/config.toml`
+- project configuration, stored in `.moonforge/config.toml` under the project's root
+
+Unless specified differently, the config command will query all the configuration files in the same order.
+
+#### Examples
+
+- Read from all scopes:
+
+```
+moonforge config list
+```
+
+- Query the value of the `container.engine` key from project scope:
+
+```
+moonforge config --project get container.engine
+```
+
+- Set the value of the `container.engine` key in the user scope:
+
+```
+moonforge config --user set container.engine podman
+```
+
+- Set the value of the key in the current scope:
+
+```
+moonforge config set container.engine podman
+```
+
+### `build`
+
+Build a Moonforge project.
+
+#### Usage
+
+```
+moonforge build [-h] [-q] [--fatal-warnings]
+                [--fragment FILE]
+		[--runtime-args ARGS]
+		PATH
+```
+
+#### Arguments
+
+- `-h`, `--help`: Show this help message and exit.
+
+- `-q`, `--quiet`: Suppress messages except warnings and errors.
+
+- `--fatal-warnings`: Turn warnings into errors.
+
+- `--fragment`: Additional kas fragment files.
+
+- `--runtime-args`: Additional arguments for the container runtime
+
+- `PATH`: the path of the project to build.
+
+#### Description
+
+The build command sets up a containerized environment to build the Moonforge project at the given `PATH`.
+
+The container engine is defined by the `container.engine` configuration key.
+
+The container image is defined by the `container.image_path`, `container.image_name`, and `container.image_version` configuration keys.
+
+The cached sstate directory is defined by the `build.sstate_dir` configuration key.
+
+The cached downloads directory is defined by the `build.download_dir` configuration key.
+
+The values of `build.sstate_dir` and `build.download_dir` can contain these placeholders:
+
+- `@XDG_CACHE_HOME@`: expands to the `XDG_CACHE_HOME` environment variable
+- `@XDG_CONFIG_HOME@`: expands to the `XDG_CONFIG_HOME` environment variable
+- `@HOME@`: expands to the `HOME` environment variable
+- `@PROJECT_NAME@`: expands to the project's name
+- `@MACHINE_NAME@`: expands to the project's machine name
+
+The build artefacts are stored in the `build` directory.
+
+#### Examples
+
+- Build the project in the current directory:
+
+```
+moonforge build .
+```
+
+- Build the project in the Project/derivative directory:
+
+```
+moonforge build Project/derivative
+```
+
+- Build the project in the current directory, with an additional fragment:
+
+```
+moonforge build --fragment kas/common/debug.yml .
+```
+
+- Build the project in the current directory, passing an additional argument
+  to the container engine:
+
+```
+moonforge build --runtime-args="--device /dev/kvm" .
+```
+
+### `shell`
+
+Run a shell in the build environment of a Moonforge project.
+
+#### Usage
+
+```
+moonforge shell [-h] [-q] [--fatal-warnings] [--fragment FILE] [--runtime-args RUNTIME_ARGS] PATH
+```
+
+#### Arguments
+
+- `-h`, `--help`: Show this help message and exit.
+
+- `-q`, `--quiet`: Suppress messages except warnings and errors.
+
+- `--fatal-warnings`: Turn warnings into errors.
+
+- `--fragment`: Additional kas fragment files.
+
+- `--runtime-args`: Additional arguments for the container runtime.
+
+- `PATH`: the path of the project.
+
+#### Description
+
+The shell command sets up a containerized environment and runs a shell inside it for the Moonforge project at the given `PATH`.
+
+The container engine is defined by the `container.engine` configuration key.
+
+The container image is defined by the `container.image_path`, `container.image_name`, and `container.image_version` configuration keys.
+
+The cached sstate directory is defined by the `build.sstate_dir` configuration key.
+
+The cached downloads directory is defined by the `build.download_dir` configuration key.
+
+The values of `build.sstate_dir` and `build.download_dir` can contain these placeholders:
+
+- `@XDG_CACHE_HOME@`: expands to the `XDG_CACHE_HOME` environment variable
+- `@XDG_CONFIG_HOME@`: expands to the `XDG_CONFIG_HOME` environment variable
+- `@HOME@`: expands to the `HOME` environment variable
+- `@PROJECT_NAME@`: expands to the project's name
+- `@MACHINE_NAME@`: expands to the project's machine name
+
+The build artefacts are stored in the `build` directory.
+
+#### Examples
+
+- Run a shell for the project in the current directory:
+
+```
+moonforge shell .
+```
+
+- Run a shell for the project in the Project/derivative directory:
+
+```
+moonforge shell Project/derivative
+```
+
+- Run a shell for the project in the current directory, with an additional fragment:
+
+```
+moonforge shell --fragment kas/common/debug.yml .
+```
+
 ### `feature`
 
 Show feature information.
