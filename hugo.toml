@@ -25,6 +25,7 @@ anchor = "smart"
 [taxonomies]
 tag = "tags"
 category = "categories"
+year = "year"
 
 [markup]
   [markup.tableOfContents]

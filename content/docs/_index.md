@@ -1,7 +1,9 @@
 ---
 title: Documentation
 linkTitle: Learn more
-menu: {main: {weight: 10}}
+menu: {main: {weight: 20}}
+cascade:
+- type: docs
 description: >
   Everything you need to build, customise, and ship your own OS image based on Moonforge.
 ---
