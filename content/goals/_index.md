@@ -2,7 +2,8 @@
 title: Design Goals
 description: 'The goals of the Moonforge project'
 linkTitle: Goals
-type: docs
+cascade:
+- type: docs
 menu: { main: { weight: 10 } }
 ---
 
