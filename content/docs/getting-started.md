@@ -28,7 +28,7 @@ instructions and the list of available commands.
 `moonforge build` uses a container engine to provide a hermetic Yocto build environment.
 Install either Docker or Podman:
 
-```
+```sh
 # Fedora
 sudo dnf install docker
 sudo systemctl enable --now docker
@@ -40,7 +40,7 @@ sudo systemctl enable --now docker
 
 If you prefer Podman (daemonless, no root required):
 
-```
+```sh
 # Fedora (Podman is usually pre-installed)
 sudo dnf install podman
 
@@ -57,7 +57,7 @@ the Yocto shared-state cache and download directory, which are reused across bui
 
 Create a workspace directory to hold your project and the build cache:
 
-```
+```sh
 mkdir -p ~/moonforge-workspace/cache
 cd ~/moonforge-workspace
 ```
@@ -67,7 +67,7 @@ cd ~/moonforge-workspace
 A Moonforge-based product lives in a downstream repository. Use the
 `moonforge init` command to initialize a Moonforge project:
 
-```
+```sh
 moonforge init --name=myproduct meta-myproduct
 ```
 
@@ -81,7 +81,7 @@ Inside the repository you will find a kas configuration file called `kas/myprodu
 Export the cache paths before building so that downloads and shared-state objects are
 stored outside the build tree and survive `cleansstate` or directory removal:
 
-```
+```sh
 cd meta-myproduct
 moonforge config set container.engine docker  # or: podman
 moonforge config set build.download_dir $HOME/moonforge-workspace/cache/downloads
@@ -91,11 +91,15 @@ moonforge config set build.sstate_dir $HOME/moonforge-workspace/cache/sstate-cac
 The configuration will be stored inside the project directory.
 
 You can also configure `moonforge`'s default settings for your user, so they
-will apply to all Moonforge projects.
+will apply to all Moonforge projects. For more information, you can use:
+
+```sh
+moonforge help config
+```
 
 ## 6. Build the image
 
-```
+```sh
 moonforge build meta-myproduct
 ```
 
@@ -108,7 +112,7 @@ configuration typically complete in **5–15 minutes** thanks to the cache.
 Decompress the disk image and open a shell inside the Moonforge build
 environment:
 
-```
+```sh
 bzip2 -dk build/tmp/deploy/images/qemux86-64/moonforge-image-base-qemux86-64.rootfs.wic.bz2
 
 moonforge shell --runtime-args "--device=/dev/kvm" meta-moonforge
@@ -116,16 +120,16 @@ moonforge shell --runtime-args "--device=/dev/kvm" meta-moonforge
 
 Then launch the disk image with `runqemu`:
 
-```
+```sh
 runqemu snapshot kvm nographic slirp ovmf qemux86-64 /build/tmp/deploy/images/qemux86-64/moonforge-image-base-qemux86-64.rootfs.wic
 ```
 
 Log in as `root` (no password on debug builds). Explore the running system:
 
-```
-$ mount | grep ' / '        # confirm read-only rootfs
-$ cat /etc/os-release       # confirm distribution identity
-$ df -h /data               # confirm persistent data partition is mounted
+```sh
+mount | grep ' / '        # confirm read-only rootfs
+cat /etc/os-release       # confirm distribution identity
+df -h /data               # confirm persistent data partition is mounted
 ```
 
 Press `Ctrl-A X` to exit the QEMU serial console.
