@@ -71,7 +71,7 @@ A Moonforge-based product lives in a downstream repository. Use the
 moonforge init --name=myproduct meta-myproduct
 ```
 
-The command amove will create a new Moonforge project repository under the
+The command above will create a new Moonforge project repository under the
 `meta-myproduct` directory, targeting QEMU.
 
 Inside the repository you will find a kas configuration file called `kas/myproduct-image-base-qemux86-64.yml`.
