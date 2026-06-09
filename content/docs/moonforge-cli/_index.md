@@ -7,9 +7,7 @@ description: >
 ---
 
 The Moonforge CLI is a tool for managing Moonforge projects. It allows you
-to quickly set up a Moonforge project for a given target machine, and enable
-features that are part of the Moonforge project, in a way that conforms to
-the design goals of Moonforge.
+to quickly set up a derivative distribution that can be easily extended.
 
 ## Installation
 
@@ -51,8 +49,9 @@ moonforge init [-h] [-q] [--fatal-warnings] [--name NAME]
 
 - `--variable=KEY=VALUE`: Set a layer variable `KEY` to a given `VALUE`.
 
-- `--vcs=VCS`: Initializes the project directory using the given VCS. By
-  default, the project is initialized as a `git` repository.
+- `--vcs=VCS`: Initializes the project directory using the given VCS. The
+  available VCS are: `git` and `none`. By default, the project is
+  initialized as a `git` repository.
 
 - `PATH`: The path of the project to initialize. If unspecified, it will use
   the current directory.
@@ -90,7 +89,7 @@ moonforge init \
   meta-derivative
 ```
 
-- Initialize the current directory as a Moonforge project with Docker support,
+- Initialize the current directory as project with Docker support,
   and WPE support, pointing to the Moonforge website:
 
 ```
@@ -342,7 +341,8 @@ moonforge feature [-h] [-q] [--fatal-warnings] [--list] [features ...]
 #### Description
 
 The `feature` command shows the information related to a Moonforge feature.
-Each feature can be used in a Moonforge project at initialization time.
+
+Each feature can be enabled when creating a derivative distribution.
 
 ### `machine`
 
@@ -369,4 +369,5 @@ moonforge machine [-h] [-q] [--fatal-warnings] [--list] [machines ...]
 #### Description
 
 The `machine` command shows the information related to a target machine.
-Each machine can be used in a Moonforge project at initialization time.
+
+Each machine can be enabled when creating a derivative distribution.
