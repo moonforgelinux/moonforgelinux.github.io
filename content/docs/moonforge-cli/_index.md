@@ -13,8 +13,30 @@ to quickly set up a derivative distribution that can be easily extended.
 
 ### From GitHub
 
-1. Clone the [moonforge-cli](https://github.com/moonforgelinux/moonforge-cli) repository
-2. Enter the cloned directory and run: `pip install --user -e .`
+Clone the [moonforge-cli](https://github.com/moonforgelinux/moonforge-cli) repository:
+
+```sh
+$ git clone https://github.com/moonforgelinux/moonforge-cli.git
+```
+
+Enter the cloned directory and create a [virtual environment](https://docs.python.org/3/library/venv.html):
+
+```sh
+$ cd moonforge-cli
+$ python3 -m venv .venv
+```
+
+Activate the virtual environment:
+
+```sh
+$ source .venv/bin/activate
+```
+
+Install using `pip`:
+
+```sh
+$ pip install -e .
+```
 
 ## Commands
 
