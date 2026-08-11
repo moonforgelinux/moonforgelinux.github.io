@@ -39,6 +39,7 @@ A/B approach means:
 - [`meta-moonforge-distro`](../moonforge-distro/), required by all layers.
 - A BSP layer (`meta-moonforge-qemu` or `meta-moonforge-raspberrypi`), the partition
   layout provided by the BSP layer must include an A and B rootfs slot.
+- Other machine-specific layers can be required (e.g., `meta-moonforge-rauc-raspberrypi`).
 
 ## How to use it
 
@@ -52,6 +53,8 @@ header:
       file: kas/include/layer/meta-moonforge-raspberrypi.yml
     - repo: meta-moonforge
       file: kas/include/layer/meta-moonforge-rauc.yml
+    - repo: meta-moonforge
+      file: kas/include/layer/meta-moonforge-rauc-raspberrypi.yml
 
   # This layer requires a RAUC specific partitioning scheme. For example:
   40_meta-moonforge-rauc-raspberrypi: |
@@ -59,8 +62,8 @@ header:
     WKS_FILE = "moonforge-image-rauc-raspberrypi.wks.in"
 ```
 
-Replace `meta-moonforge-raspberrypi.yml` with `meta-moonforge-qemu.yml` for local
-development, or the corresponding board support for other hardware.
+Replace the machine for `qemu` for local development, or the corresponding
+board support for other hardware.
 
 ## Signing bundles
 
