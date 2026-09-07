@@ -147,19 +147,17 @@ layer.&lt;/li>
 industrial HMIs, in-vehicle displays) require a compositor to manage the display
 surface. Weston is the standard choice in the embedded Linux ecosystem: it is
 lightweight, well-maintained, and fully supported by the Yocto/OpenEmbedded layer
-ecosystem.&lt;/p></description></item><item><title>meta-moonforge-wpe</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-wpe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-wpe/</guid><description>&lt;p>&lt;code>meta-moonforge-wpe&lt;/code> installs &lt;a href="https://webkit.org/wpe/">WPE WebKit&lt;/a> and the
-&lt;a href="https://github.com/Igalia/cog">Cog&lt;/a> browser shell, configured to launch a given URL
-in a fullscreen Wayland window at boot.&lt;/p>
+ecosystem.&lt;/p></description></item><item><title>meta-moonforge-wpe</title><link>https://www.moonforgelinux.org/docs/layers/moonforge-wpe/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.moonforgelinux.org/docs/layers/moonforge-wpe/</guid><description>&lt;p>&lt;code>meta-moonforge-wpe&lt;/code> installs &lt;a href="https://webkit.org/wpe/">WPE WebKit&lt;/a> and
+&lt;a href="https://github.com/psaavedra/wpe-simple-launcher">wpe-simple-launcher&lt;/a>,
+configured to launch a given URL in a fullscreen Wayland window at boot.&lt;/p>
 &lt;p>WPE (Web Platform for Embedded) is a WebKit port designed specifically for
 embedded targets: it is lightweight, GPU-accelerated when the hardware supports it,
 and actively maintained by Igalia.&lt;/p>
 &lt;h2 id="what-it-does">What it does&lt;/h2>
 &lt;ul>
-&lt;li>Installs WPE WebKit, Cog, and their runtime dependencies.&lt;/li>
-&lt;li>Provides a custom systemd service that launches Cog automatically at boot and
-navigates to the configured URL.&lt;/li>
-&lt;li>Configures Cog to run fullscreen (no address bar, no tabs, no navigation controls)
-in a Wayland/Weston surface.&lt;/li>
+&lt;li>Installs WPE WebKit, wpe-simple-launcher, and their runtime dependencies.&lt;/li>
+&lt;li>Provides a custom systemd service that automatically launches the browser at boot
+and navigates to the configured URL.&lt;/li>
 &lt;/ul>
 &lt;h2 id="why-use-it">Why use it&lt;/h2>
 &lt;p>WPE is the standard WebKit port for embedded Linux devices. It gives you a
