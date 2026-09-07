@@ -131,12 +131,12 @@ available.
 
 ## How do I change the URL displayed by the WPE kiosk?
 
-Set `WAYLAND_COG_LAUNCH_URL` in your kas `local_conf_header`:
+Set `WPE_SIMPLE_LAUNCHER_URL` in your kas `local_conf_header`:
 
 ```yaml
 local_conf_header:
   30_meta-moonforge-wpe: |
-    WAYLAND_COG_LAUNCH_URL = "https://my-application.example.com"
+    WPE_SIMPLE_LAUNCHER_URL = "https://my-application.example.com"
 ```
 
 This is a build-time setting. If you need to change the URL at runtime without

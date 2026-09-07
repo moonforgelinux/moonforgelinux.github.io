@@ -4,13 +4,13 @@ type: 'docs'
 linkTitle: 'WPE'
 weight: 55
 description: >
-  Adds WPE WebKit to display a configurable URL in a fullscreen kiosk window via the
-  Cog browser.
+  Adds WPE WebKit to display a configurable URL in a fullscreen kiosk window via
+  a simple launcher.
 ---
 
-`meta-moonforge-wpe` installs [WPE WebKit](https://webkit.org/wpe/) and the
-[Cog](https://github.com/Igalia/cog) browser shell, configured to launch a given URL
-in a fullscreen Wayland window at boot.
+`meta-moonforge-wpe` installs [WPE WebKit](https://webkit.org/wpe/) and
+[wpe-simple-launcher](https://github.com/psaavedra/wpe-simple-launcher),
+configured to launch a given URL in a fullscreen Wayland window at boot.
 
 WPE (Web Platform for Embedded) is a WebKit port designed specifically for 
 embedded targets: it is lightweight, GPU-accelerated when the hardware supports it, 
@@ -18,11 +18,9 @@ and actively maintained by Igalia.
 
 ## What it does
 
-- Installs WPE WebKit, Cog, and their runtime dependencies.
-- Provides a custom systemd service that launches Cog automatically at boot and
-  navigates to the configured URL.
-- Configures Cog to run fullscreen (no address bar, no tabs, no navigation controls)
-  in a Wayland/Weston surface.
+- Installs WPE WebKit, wpe-simple-launcher, and their runtime dependencies.
+- Provides a custom systemd service that automatically launches the browser at boot
+  and navigates to the configured URL.
 
 ## Why use it
 
@@ -65,7 +63,7 @@ local_conf_header:
   30_meta-moonforge-raspberrypi: |
     WKS_FILE = "moonforge-image-base-raspberrypi.wks.in"
   30_meta-moonforge-wpe: |
-    WAYLAND_COG_LAUNCH_URL = "https://example.com"
+    WPE_SIMPLE_LAUNCHER_URL = "https://example.com"
 
 machine: raspberrypi5
 ```
@@ -74,19 +72,19 @@ machine: raspberrypi5
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `WAYLAND_COG_LAUNCH_URL` | Yes | The URL Cog navigates to at boot |
+| `WPE_SIMPLE_LAUNCHER_URL` | Yes | The URL to navigate to at boot |
 
-Set `WAYLAND_COG_LAUNCH_URL` to any valid HTTP or HTTPS URL. For development and
+Set `WPE_SIMPLE_LAUNCHER_URL` to any valid HTTP or HTTPS URL. For development and
 testing, you can point it at a local server (e.g., `http://10.0.2.2:8080` when using
 QEMU with `slirp` networking).
 
 ## Verifying the kiosk display
 
-After booting, you can confirm that Weston and Cog are running:
+After booting, you can confirm that Weston and wpe-simple-launcher are running:
 
 ```
 $ systemctl status weston
-$ systemctl status wayland-cog-launch
+$ systemctl status wpe-simple-launcher
 ```
 
 If the display is blank, check the Weston log for GPU or DRM errors:
