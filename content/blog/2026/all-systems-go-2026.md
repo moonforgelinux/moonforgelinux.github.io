@@ -15,7 +15,7 @@ discover new functionality in various areas.
 
 We are going to
 [present](https://cfp.all-systems-go.io/all-systems-go-2026/talk/HNUWBK/)
-our work on Moonforge on Wednesday, September 30, so make sure to attend.
+our work on Moonforge on Wednesday, September 30. We'll cover the goals behind Moonforge, how we are aiming to achieve them, our latest work on creating an easy to use CLI and a few more things. If you are attending the All Systems Go! make sure you don't miss our presentation. 
 
 You can also find various Igalians attending the conference, if you want to
 chat with us about Moonforge.
